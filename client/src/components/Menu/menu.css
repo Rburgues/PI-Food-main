@@ -1,0 +1,171 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background: #E5E5E5;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body header {
+    display: flex;
+    justify-content: flex-end;
+  }
+  body header button#navbutton {
+    z-index: 2;
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    margin: 0.5rem;
+    border: none;
+    border-radius: 1rem;
+    background: #323133;
+    cursor: pointer;
+    transition: 0.5s cubic-bezier(0.5, 0, 0, 1);
+  }
+  body header button#navbutton .icon {
+    left: 50%;
+    height: 0.25rem;
+    width: 2.5rem;
+    border-radius: 1rem;
+    background: white;
+    position: absolute;
+    transform: translate(-50%, -50%) rotate(0deg);
+    transition: 0.5s cubic-bezier(0.5, 0, 0, 1);
+  }
+  body header button#navbutton .icon.top {
+    top: 25%;
+  }
+  body header button#navbutton .icon.bottom {
+    top: 75%;
+  }
+  body header button#navbutton.pressed {
+    background: #434A54;
+  }
+  body header button#navbutton.pressed .icon {
+    background: #AAB2BD;
+  }
+  body header button#navbutton.close .icon.top, body header button#navbutton.close .icon.bottom {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  body header button#navbutton.close .icon.middle {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  body header #navigationpart {
+    --page-rotation:10deg;
+    --hand-rotation:10deg;
+    --nav-size:45vmin;
+    --hand-position:1;
+    --page-position:0;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    perspective: 50rem;
+    transition: 0.5s cubic-bezier(0.5, 0, 0, 1);
+  }
+  body header #navigationpart:not(.active) {
+    pointer-events: none;
+  }
+  body header #navigationpart #navwrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(var(--hand-rotation)) translateY(100vh);
+    transition: 1s cubic-bezier(0.5, 0, 0, 1) 0.5s;
+  }
+  body header #navigationpart nav {
+    position: relative;
+    left: 100vw;
+    z-index: 3;
+    width: var(--nav-size);
+    height: calc(var(--nav-size) * 1.41421);
+    border-radius: 0.5vmin;
+    background: #FFFFFF;
+    font-family: "Indie Flower", cursive;
+    transform: rotate(calc(var(--page-rotation) - var(--hand-rotation))) translateZ(0rem) rotateX(0deg) rotateY(0deg);
+  }
+  body header #navigationpart nav svg {
+    position: absolute;
+    top: 90%;
+    left: 80%;
+    width: 25%;
+    transform-origin: 2rem 0.5rem;
+    transform: rotate(calc(var(--hand-rotation) - var(--page-rotation))) translateY(0vh);
+    transition: 0.5s cubic-bezier(0.5, 0, 0, 1);
+  }
+  body header #navigationpart nav h2 {
+    padding: 2rem 2rem 0 2rem;
+    font-size: 6vmin;
+    margin: 0;
+  }
+  body header #navigationpart nav ul {
+    list-style: none;
+    padding: 1.5rem 2rem 0 2rem;
+    margin: 0;
+    font-size: 5vmin;
+  }
+  body header #navigationpart nav ul li {
+    margin-bottom: 0.75rem;
+  }
+  body header #navigationpart nav ul li a {
+    color: inherit;
+  }
+  body header #navigationpart nav ul li a:not(:hover) {
+    text-decoration: none;
+  }
+  body header #navigationpart nav button#quitnavigation {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 6vmin;
+    line-height: 0rem;
+    background: none;
+    outline: none;
+  }
+  body header #navigationpart nav button#quitnavigation:before {
+    content: "x";
+  }
+  body header #navigationpart nav button#quitnavigation:hover {
+    color: #D8334A;
+  }
+  body header #navigationpart:not(.active) nav {
+    transition-delay: 1s;
+  }
+  body header #navigationpart.active #navwrapper {
+    transform: translate(-50%, -50%) rotate(var(--hand-rotation)) translateY(0vh);
+    transition-duration: 0s;
+    transition-delay: 0s;
+  }
+  body header #navigationpart.active nav {
+    left: 0vw;
+    animation: naventer 1.5s ease;
+  }
+  @keyframes naventer {
+    0%, 90% {
+      box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, 0.1);
+    }
+    0% {
+      left: 100vw;
+      transform: rotate(calc(var(--page-rotation) - var(--hand-rotation))) translateZ(5rem) rotateX(10deg) rotateY(-10deg);
+    }
+    40% {
+      transform: rotate(calc(var(--page-rotation) - var(--hand-rotation))) translateZ(15rem) rotateX(5deg) rotateY(-5deg);
+      box-shadow: 0 0 4rem -1rem rgba(0, 0, 0, 0.1);
+    }
+    90% {
+      transform: rotate(calc(var(--page-rotation) - var(--hand-rotation))) translateZ(0rem) rotateX(0deg) rotateY(0deg);
+    }
+    100% {
+      left: 0vw;
+    }
+  }
+  body header #navigationpart.active nav svg {
+    transform: rotate(calc(var(--hand-rotation) - var(--page-rotation))) translateY(50vh);
+    transition-duration: 0s;
+    transition-delay: 0s;
+  }

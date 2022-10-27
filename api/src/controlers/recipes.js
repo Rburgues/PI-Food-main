@@ -1,22 +1,17 @@
 const axios = require("axios");
 const { Recipe, Diet } = require("../db");
-const Sequelize = require("sequelize");
 require("dotenv").config();
 const { API_KEY } = process.env;
 
-let apiData = [];
+let dataApi = [];
 
-const getApiData = async () => {
+const getDataApi = async () => {
   try {
-    if (apiData.length > 0) return apiData;
+    if (dataApi.length > 0) return dataApi;
     const apiRecipes = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10` //cambiar a 100 al momento del paginado!
     );
-    // if (apiRecipes.status > 399) {
-    //   apiRecipes = await axios.get(
-    //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY_1}&addRecipeInformation=true&number=100`
-    //   );
-    // }
+
     apiRecipes.data.results.map((recipe) => {
       let newSteps = [];
       if (recipe.analyzedInstructions[0] !== undefined) {
@@ -31,7 +26,7 @@ const getApiData = async () => {
       } else {
         stepToAdd = {
           number: 1,
-          step: "there are no steps listed for this recipe",
+          step: "No exists steps for this recipe",
         };
         newSteps.push(stepToAdd);
       }
@@ -45,35 +40,35 @@ const getApiData = async () => {
         vegetarian: recipe.vegetarian,
         vegan: recipe.vegan,
         glutenFree: recipe.glutenFree,
-        steps: newSteps,       
+        steps: newSteps,
         diets: recipe.diets,
         dbCreated: false,
       };
-      apiData.push(newRecipe);
+      dataApi.push(newRecipe);
     });
-    return apiData;
+    return dataApi;
   } catch (error) {
     console.error(error);
     return new Error(error);
   }
 };
 
-const getDBData = async () => {
+const getDataDB = async () => {
   try {
     const dbRecipes = await Recipe.findAll({
       include: [
-        
+
         {
           model: Diet,
           attributes: ['diet_name'],
           through: {
             attributes: [],
+          },
         },
-        },
-        
+
       ],
     });
-    
+
     return dbRecipes;
   } catch (error) {
     return new Error(error);
@@ -82,24 +77,29 @@ const getDBData = async () => {
 
 const getAllRecipes = async (name) => {
   try {
-    const apiInfo = await getApiData();
-    const dbInfo = await getDBData();
+    const apiInfo = await getDataApi();
+    const dbInfo = await getDataDB();
+
     let allData = [];
-    apiInfo ? (allData = [...apiInfo]) : console.log("no hay datos de la api");
-    Array.isArray(dbInfo)
-      ? (allData = [...allData, ...dbInfo])
-      : console.log("no hay datos de la Base aun");
+
+    if (apiInfo || dbInfo) {
+      allData = [...apiInfo, ...dbInfo]
+    } else {
+      return {
+        msg: "The data it's empty"
+      }
+    }
 
     if (typeof name === "string" && name.length > 0) {
-      let recipeToFind = allData.filter((recipe) => {
-        return recipe.name.toLowerCase().includes(name.toLowerCase());
+      let recipeToFind = allData.filter((Recipe) => {
+        return Recipe.name.toLowerCase().includes(name.toLowerCase());
       });
-      if (recipeToFind) {
-        return recipeToFind;
-      } else {
+      if (recipeToFind.length === 0) {
         return {
-          msg: "Los sentimos la receta buscada no se encuentra en la base de datos",
+          msg: "We are sorry the searched recipe is not in the database",
         };
+      } else {
+        return recipeToFind;
       }
     }
     return allData;
@@ -108,19 +108,20 @@ const getAllRecipes = async (name) => {
   }
 };
 
-const getRecipeById = async (id) => {
+const getRecipeID = async (id) => {
   try {
+  
     if (typeof id === "string" && id.slice(0, 3) === "DBC") {
       let recipeFind = await Recipe.findByPk(id, {
         include: [
-         
+
           {
             model: Diet,
             attributes: ['diet_name'],
             through: {
               attributes: [],
+            },
           },
-          },        
         ],
       });
       return recipeFind;
@@ -128,11 +129,7 @@ const getRecipeById = async (id) => {
       let recipeFind = await axios.get(
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
       );
-      // if (recipeFind.status !== 200) {
-      //   recipeFind = await axios.get(
-      //     `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY_1}`
-      //   );
-      // }
+
       let newSteps = [];
       if (recipeFind.data.analyzedInstructions[0] !== undefined) {
         let count = recipeFind.data.analyzedInstructions[0].steps.length;
@@ -160,7 +157,7 @@ const getRecipeById = async (id) => {
         vegetarian: recipeFind.data.vegetarian,
         vegan: recipeFind.data.vegan,
         glutenFree: recipeFind.data.glutenFree,
-        steps: newSteps,       
+        steps: newSteps,
         diets: recipeFind.data.diets,
         dbCreated: false,
       };
@@ -172,9 +169,49 @@ const getRecipeById = async (id) => {
   }
 };
 
+const createRecipe = async ({
+  name, summary, score, healthScore, image, vegetarian, vegan, glutenFree, steps, diets }) => {
+
+  let res = {
+    status: 200,
+    msg: "Recipe created!!!",
+  };
+
+  if (typeof name !== "string" || name.length < 3) {
+    res.status = 404;
+    res.msg = "Invaild name, please insert 3 or more characters";
+    return res;
+  }
+
+  if (typeof summary !== "string" || summary.length < 10) {
+    res.status = 404;
+    res.msg = "Please insert 10 or more characters";
+    return res;
+  }
+
+  if (typeof healthScore !== "number" || healthScore > 100) {
+    res.status = 404;
+    res.msg = "HealtScore is only 0 to 100, please try again";
+    return res;
+  }
+
+  let newRecipe = await Recipe.create({
+    name, summary, score, healthScore, image, vegetarian, vegan, glutenFree, steps, diets
+  });
+
+  let dietsFoud = await Diet.findAll({
+    where: {
+      diet_name: diets,
+    },
+  });
+  newRecipe.addDiet(dietsFoud);
+  return res;
+};
+
 module.exports = {
-  getApiData,
-  getDBData,
+  getDataApi,
+  getDataDB,
   getAllRecipes,
-  getRecipeById,
+  getRecipeID,
+  createRecipe
 };
