@@ -1,21 +1,23 @@
-import './App.css';
-import React from 'react';
-import {  Route,  Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import LandingPage from './components/LandingPage/LandingPage.jsx';
+import Home from './components/Home/Home.jsx';
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Switch>
-        <Route path="/" exact render={() => <LandingPage />} />
+   
+<Router>
+      <div className="App">
+        <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/home" component={Home} />
+        </Switch>
+      </div>
+    </Router>
 
-        {/* <Route path="/Home" component={Home} />
-        <Route path="/newComponet" exact render={() => <Newcomponent />} />
-        <Route path="/addrecipe" exact render={() => <Recipes />} />
-        <Route path="/details/:id" exact render={() => <Details />} />
-        <Redirect to="/" /> */}
-      </Switch>
-    </div>
+
+
+     
   );
 }
 
