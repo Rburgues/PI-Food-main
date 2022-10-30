@@ -27,16 +27,36 @@ input {
   left: 0;
 }
 
+.btnGoogle{
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+.btnGoogle:hover{
+  animation: up 0.1s linear;
+  animation-fill-mode: forwards;
+}
+@keyframes up {
+  from{
+    scale: 1;
+  }
+  to{
+    scale: 1.1;
+  }
+}
+
 .signin_signup {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translate(-50%, -50%);
   left: 75%;
-  width: 50%;
+  width: 10%;
   opacity: 0;
   display: grid;
+  justify-content: center;
   grid-template-columns: 1fr;
   z-index: 5;
+  text-align: center;
   
   animation: fade 0.7s;
   animation-delay: 2s;
