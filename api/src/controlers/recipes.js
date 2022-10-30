@@ -9,7 +9,7 @@ const getDataApi = async () => {
   try {
     if (dataApi.length > 0) return dataApi;
     const apiRecipes = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10` //cambiar a 100 al momento del paginado!
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=12` //cambiar a 100 al momento del paginado!
     );
 
     apiRecipes.data.results.map((recipe) => {

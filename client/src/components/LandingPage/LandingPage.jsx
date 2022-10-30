@@ -10,8 +10,8 @@ class LandingPage extends Component {
     return (
       
      
-    <div class="container">
-      <div class="forms_container">
+    <div class="containers">
+      <div class="forms_containers">
         <div class="signin_signup">
           <form action="#" class="sign_in_form">
             <h2 class="title">Sign in</h2>
