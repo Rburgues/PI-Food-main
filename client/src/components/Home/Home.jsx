@@ -1,21 +1,22 @@
 import React from 'react'
 import './Home.css'
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { allFood } from "../../Redux/action";
 import CardRecipe from "../CardRecipe/CardRecipe.jsx";
-import logo from '../../images/hf_logo.png'
+import Nav from '../Nav/Nav';
+import Sidebar from '../Sidebar/Sidebar';
+import { Loading } from '../Loading/Loading';
 
 
 export default function Home() {
   let dispatch = useDispatch()
   let all_Food = useSelector((state) => state.Food)
-  const data = localStorage.getItem('response')
- const user = (JSON.parse(data))
+  
 
   useEffect(() => {
     dispatch(allFood());
-
+  
   }, [dispatch])
   
   
@@ -23,15 +24,12 @@ export default function Home() {
   return (
     <div className="back">
       
-     <div className='nav'>
-      <img className='logo' src={logo}/>
-      <div className='nombre'>Bienvenido <br></br>{user.profileObj.name}<img className='userimage' src={user.profileObj.imageUrl}/></div>
-      
-     </div>
-
-        <div className="wrapper" >
+    <Nav/>
+    <Sidebar/>
+   
+       
           {
-            all_Food.map(e => {
+            all_Food.length > 0 ? <div className="wrapper" > {all_Food.map(e => {
               return <CardRecipe
                 key={e.id}
                 id={e.id}
@@ -40,10 +38,14 @@ export default function Home() {
 
                 diets={e.diets.join(" , ")}
                 healthScore={e.healthScore} />
-
-            })
-          }
-        </div>
+           
+            }) 
+          
+           }
+           
+          
+        </div> :  <Loading/>}
+     
     </div>
 
   )

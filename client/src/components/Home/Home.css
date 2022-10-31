@@ -1,4 +1,7 @@
+
 .wrapper {
+    width: 80%;
+    margin-top: 100px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 30px;
@@ -7,97 +10,12 @@
     padding-right: 70px;
     padding-top: 30px;
     padding-bottom: 50px;
-
 }
 
-.nav{
-    width: 100%;
-    height: 100px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: left;
-    align-items: center;
-    padding-left: 4%;
-    background-color: rgb(0, 0, 0);
-    color: #FFFFFF;
-}
-.logo{
-    width: 120px;
-    height: 70px;
-    margin: 5px;
-}
-
-.nombre{
-    text-align: left;
-    padding-right: 10%;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-.userimage{
-    width: 70px;
-    height: 70px;
-    border-radius: 100px;
-    align-items: center;
-    margin-left:25px;
-}
 .back {
     background-color: rgb(245, 223, 190);
     background-size: 100% 100%;
-
-}
-
-.imgCreate {
-    max-width: 100px;
-    max-height: 70px;
-    padding-bottom: 50px;
-    padding-right: 20px;
-
-    padding-top: 10px;
-}
-
-.click1 {
-
-    margin: 20px;
-    padding-bottom: 10px;
-}
-
-.padre {
     display: flex;
+    flex-direction: row-reverse;
 
-    justify-content: space-around;
-
-    align-items: center;
-    padding-bottom: 20px;
-}
-
-.Search-Bar {
-
-    justify-content: center;
-
-}
-
-.imgError {
-    height: 100%;
-    width: 43%;
-
-    border-radius: 10px;
-
-
-}
-
-.refresh1 {
-    display: flex;
-
-    justify-content: space-between;
-
-
-
-}
-
-.buttonRefresh {
-    padding-bottom: 50px;
-    padding-right: 20px;
 }
