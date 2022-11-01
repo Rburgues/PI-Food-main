@@ -23,10 +23,11 @@
 
 .loading {
     width: 100%;
-    display: grid;
-    grid-column-start: 1;
+    display: flex;
+    grid-column-start: 2;
     grid-column-end: 4;
-   justify-content: center;
+    float: right;
+   
 }
 
 .back {
