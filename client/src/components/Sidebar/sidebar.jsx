@@ -11,11 +11,11 @@ export default function sidebar() {
                 <option value="3">Option 2</option></select></div>
 
 
-            <div className='filterContent'><label>Filter by Diets</label><br></br><select type='option'><option value="1">Select All</option>
+            <div className='filterContent'><label>Order by Healthscore</label><br></br><select type='option'><option value="1">Select All</option>
                 <option value="2">Option 1</option>
                 <option value="3">Option 2</option></select></div>
 
-            <div className='filterContent'><label>Filter by Name</label><br></br><select type='option'><option value="1">Select All</option>
+            <div className='filterContent'><label>Filter by Diet</label><br></br><select type='option'><option value="1">Select All</option>
                 <option value="2">Option 1</option>
                 <option value="3">Option 2</option></select></div>
 

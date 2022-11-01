@@ -1,0 +1,33 @@
+.search-container {
+    width: 100%;
+    justify-content: center;
+    margin-top: -10px;
+    display: flex;
+}
+
+.inputSearch {
+    width: 300px;
+    padding: 8px 8px 8px 10px;
+    margin-top: 8px;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px 0px 0px 8px;
+}
+
+.search-container-Input {
+    float: right;
+    padding: 8px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #f5dfbe;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.search-container-Input:hover {
+    background: #ccc;
+}
+
