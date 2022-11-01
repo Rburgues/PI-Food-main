@@ -14,12 +14,19 @@
 
 .error404 {
     width: 100%;
-   
     display: grid;
     grid-column-start: 2;
     grid-column-end: 4;
     padding-top: 15%;
     justify-content: center;
+}
+
+.loading {
+    width: 100%;
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 4;
+   justify-content: center;
 }
 
 .back {

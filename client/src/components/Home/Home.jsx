@@ -16,7 +16,7 @@ export default function Home() {
   let all_Recipes = useSelector((state) => state.Recipes)
   const [loading, setLoading] = useState(true);
 
-  if (allRecipes.length > 0 && loading) {
+  if (all_Recipes.length > 0 && loading) {
     setLoading(false);
   }
 
@@ -36,7 +36,7 @@ export default function Home() {
       <div className="wrapper" >
 
       {
-    all_Recipes.length > 0 && loading ? (
+    all_Recipes.length > 0 && !loading ? (
       all_Recipes.map(e => {
 
         return (
@@ -49,8 +49,8 @@ export default function Home() {
             healthScore={e.healthScore} />
         )
       })
-    ) : !all_Recipes.length > 0 && !loading ? (
-      <Loading />
+    ) : !all_Recipes.length > 0 && loading ? (
+      <div className="loading" ><Loading /></div>
     ) : (
       <div className="error404" ><ErrorPage /></div>
     )

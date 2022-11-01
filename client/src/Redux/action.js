@@ -1,8 +1,9 @@
-
 import axios from "axios";
 
 export const ALL_RECIPES = "ALL_RECIPES"
 export const SEARCH = "SEARCH"
+export const FILTER_TYPE = "FILTER_TYPE"
+
 
 export function allRecipes(){
     return function(dispatch){
@@ -32,6 +33,13 @@ export function AllSearch(name){
             console.log(error)
         })
         
+    }
+}
+
+export function FilterDiet(order){
+    return {
+        type: FILTER_TYPE,
+        payload: order
     }
 }
 
