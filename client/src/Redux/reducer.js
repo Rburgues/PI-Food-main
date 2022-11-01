@@ -1,5 +1,5 @@
 
-import { ALL_RECIPES, SEARCH, FILTER_TYPE } from "./action";
+import { ALL_RECIPES, SEARCH, FILTER_TYPE, ORDER_BY_NAME } from "./action";
 import { ALLTYPE } from "../components/Sidebar/Sidebar";
 
 
@@ -33,7 +33,18 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 Recipes: AllType
             }
-        
+        case ORDER_BY_NAME:
+            let sortedNames = [...state.Recipes];
+            if (action.payload === 'AZ') {
+                sortedNames = sortedNames.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
+            } else {
+                sortedNames = sortedNames.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1)
+            }
+            return {
+                ...state,
+                Recipes: sortedNames
+            }
+
         default:
             return state
     }

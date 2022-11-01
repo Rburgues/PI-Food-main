@@ -3,6 +3,7 @@ import axios from "axios";
 export const ALL_RECIPES = "ALL_RECIPES"
 export const SEARCH = "SEARCH"
 export const FILTER_TYPE = "FILTER_TYPE"
+export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 
 
 export function allRecipes(){
@@ -42,4 +43,11 @@ export function FilterDiet(order){
         payload: order
     }
 }
+
+export function orderByName(payload) {
+    return {
+        type: "ORDER_BY_NAME",
+        payload: payload
+    }
+};
 

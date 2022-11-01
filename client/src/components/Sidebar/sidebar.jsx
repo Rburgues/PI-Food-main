@@ -1,8 +1,9 @@
 import React from 'react'
 import './Sidebar.css'
 import { useDispatch } from "react-redux"
-import { FilterDiet } from '../../Redux/action'
+import { FilterDiet, orderByName } from '../../Redux/action'
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 
 
@@ -12,33 +13,39 @@ export const ALLTYPE = "ALLTYPE"
 
 export default function Sidebar() {
 
+    const dispatch = useDispatch()
+    const [order, setOrder] = useState('')
 
-    let dispatch = useDispatch()
-   
-
-    function handleOnChangeType(e) {
+    function handleOnChangeDiet(e) {
+        e.preventDefault();
         dispatch(FilterDiet(e.target.value))
     }
+
+    function handleSortName(e) {
+        e.preventDefault();
+        dispatch(orderByName(e.target.value))
+        setOrder(`Ordenado ${e.target.value}`)
+    }
+    
 
     function resetAll() {
         window.location.reload()
     }
 
-     
     return (
 
         <div className='aside'>
 
-            <div className='filterContent'><label>Order by Name</label><br></br><select type='option'><option value="1">Select All</option>
-                <option value="2">Option 1</option>
-                <option value="3">Option 2</option></select></div>
+            <div className='filterContent'><label>Order by Name</label><br></br><select onChange={(e) => handleSortName(e)} type='option'><option value="1">Select All</option>
+                <option value="AZ">Order A to Z</option>
+                <option value="ZA">Order Z to A</option></select></div>
 
 
             <div className='filterContent'><label>Order by Healthscore</label><br></br><select type='option'><option value="1">Select All</option>
                 <option value="2">Option 1</option>
                 <option value="3">Option 2</option></select></div>
 
-            <div className='filterContent'><label>Filter by Diet</label><br></br><select onChange={(e) => handleOnChangeType(e)} type='option'>
+            <div className='filterContent'><label>Filter by Diet</label><br></br><select onChange={(e) => handleOnChangeDiet(e)} type='option'>
                 <option value={ALLTYPE}>Select All</option>
                 <option value="gluten free">Gluten Free</option>
                 <option value="ketogenic">Ketogenic</option>
