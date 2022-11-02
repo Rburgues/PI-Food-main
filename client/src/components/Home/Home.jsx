@@ -57,23 +57,6 @@ export default function Home() {
   }
 
 
-{/* 
-        {all_Recipes.length > 0 ? <div className="wrapper" > {all_Recipes.map(e => {
-          return <CardRecipe
-            key={e.id}
-            id={e.id}
-            name={e.name}
-            image={e.image}
-            diets={e.diets.join(" , ")}
-            healthScore={e.healthScore} />
-
-        })
-
-        }
-
-
-        </div> : <Loading /> || <div className="error404" ><ErrorPage /></div>} */}
-
       </div>
 
     </div>
