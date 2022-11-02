@@ -5,7 +5,7 @@ import { ALLTYPE } from "../components/Sidebar/Sidebar";
 
 const initialState = {
     Recipes: [],
-    Foods: [],
+    Food: [],
 }
 
 const rootReducer = (state = initialState, action) => {

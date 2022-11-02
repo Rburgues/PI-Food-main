@@ -14,7 +14,9 @@ input {
 .containers {
   position: relative;
   width: 100%;
-  background-color: rgb(245, 223, 190);
+  /* background-color: rgb(245, 223, 190); */
+  background-image: url('./img/bg_colors.jpg');
+  background-size: cover;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -108,5 +110,57 @@ input {
   to {
     right: 48%;
     top: 35%;
+  }
+}
+
+.entrada_landing{
+  margin-top: 30%;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 400px;
+  opacity: 0;
+  align-items: center;
+  animation: fade 1s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+
+}
+
+.col1{
+  width: 80px;
+  position: absolute;
+  right:0%;
+  animation: flecha 1s ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+.col2{
+  width: 280px;
+  position: absolute;
+  right:0%;
+}
+
+
+.puerta_landing{
+  width: 280px;
+}
+
+.flecha_landing{
+  margin-top: 10px;
+  width: 240px;
+
+  
+}
+
+
+@keyframes flecha {
+  from {
+    left:8%;
+
+  }
+
+  to {
+   left:-5%;
   }
 }

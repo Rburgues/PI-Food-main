@@ -2,7 +2,6 @@ import React from 'react'
 import './Sidebar.css'
 import { useDispatch } from "react-redux"
 import { FilterDiet, orderByName } from '../../Redux/action'
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 
