@@ -8,7 +8,7 @@ export default function Card({ id, name, image, diets, healthScore }) {
     return (
         <div className="card">
 
-            <div className="container">
+            <div className="">
                 <Link className="Link" to={`${id}`}>
                     <img className="imgCard" src={image} alt="Imagen" />
                 

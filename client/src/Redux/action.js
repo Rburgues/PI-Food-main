@@ -6,6 +6,7 @@ export const FILTER_TYPE = "FILTER_TYPE"
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE';
 export const CLEAR_PAYLOADS = 'CLEAR_PAYLOADS';
+export const ALL_ID = 'ALL_ID';
 
 
 export function allRecipes(){
@@ -36,6 +37,21 @@ export function AllSearch(name){
             console.log(error)
         })
         
+    }
+}
+
+export  function AllID(id){
+    return function(dispatch){
+        axios.get(`api/recipes/${id}`)
+        .then((res)=>{
+            dispatch({
+                type: ALL_ID,
+                payload: res.data
+            })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
     }
 }
 

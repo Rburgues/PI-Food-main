@@ -1,44 +1,25 @@
 import React from 'react'
 import './CreateRecipe.css'
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { allRecipes } from "../../Redux/action";
-import NavVacia from '../NavVacia/NavVacia';
-
+import NavVacia from '../NavVacia/NavVacia.jsx'
 
 
 export default function CreateRecipe() {
-  let dispatch = useDispatch()
-  let all_Recipes = useSelector((state) => state.Recipes)
-  const [loading, setLoading] = useState(true);
-
-  if (all_Recipes.length > 0 && loading) {
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    dispatch(allRecipes());
-
-  }, [dispatch])
 
 
+    return (
+        <div className='back'>
+            <NavVacia />
 
-  return (
-    <div className="contentBody">
+            <div className='formContainer'>
+                <div></div>
+                <div></div>
+                <h1>Form de Crear Receta</h1>
+                <div></div>
+                <div></div>
+            </div>
 
-      <NavVacia />     
-
-      <div className="formContainer" >
-        <div></div>
-        <div></div>
-        <div className='form'><h1>CREATE RECIPE FORM</h1></div>
-        <div></div>
-        <div></div>
+        </div>
+    )
 
 
-      </div>
-
-    </div>
-
-  )
 }

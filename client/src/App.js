@@ -4,6 +4,7 @@ import Home from './components/Home/Home.jsx';
 import './App.css';
 import { PageNotFound } from './components/PageNotFound/PageNotFound.jsx';
 import CreateRecipe from './components/CreateRecipe/CreateRecipe.jsx';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails.jsx';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route exact path="/home" element={<Home/>} />                         
-            {/* <Route path="/home/:id" element={<FoodDetails/>}/> */}
+            <Route path="/home/:id" element={<RecipeDetails/>}/>
             <Route path="/recipe" element={<CreateRecipe/>}/>
             <Route path="*" element={<PageNotFound/>} /> 
 

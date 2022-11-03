@@ -1,11 +1,12 @@
 
-import { ALL_RECIPES, SEARCH, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS } from "./action";
+import { ALL_RECIPES, SEARCH, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS, ALL_ID} from "./action";
 import { ALLTYPE } from "../components/Sidebar/Sidebar";
 
 
 const initialState = {
     Recipes: [],
     Food: [],
+    RecipeDetails: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -63,6 +64,12 @@ const rootReducer = (state = initialState, action) => {
                 detail: action.payload,
                 
             };
+
+            case ALL_ID:
+            return {
+            ...state,
+            RecipeDetails: action.payload
+            }
 
         default:
             return state
