@@ -3,6 +3,7 @@ import LandingPage from './components/LandingPage/LandingPage.jsx';
 import Home from './components/Home/Home.jsx';
 import './App.css';
 import { PageNotFound } from './components/PageNotFound/PageNotFound.jsx';
+import CreateRecipe from './components/CreateRecipe/CreateRecipe.jsx';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
             <Route exact path="/" element={<LandingPage />} />
             <Route exact path="/home" element={<Home/>} />                         
             {/* <Route path="/home/:id" element={<FoodDetails/>}/> */}
-            {/* <Route path="/recipe" element={<Formulario/>}/> */}
+            <Route path="/recipe" element={<CreateRecipe/>}/>
             <Route path="*" element={<PageNotFound/>} /> 
 
 

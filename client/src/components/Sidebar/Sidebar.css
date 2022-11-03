@@ -1,7 +1,7 @@
 .aside {
   width: 14%;
   display: grid;
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-rows: repeat(10, 1fr);
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -15,7 +15,6 @@
 
 .createdby{
   text-align: center;
-  margin-top: 70px;
   font-size: 14px;
 }
 

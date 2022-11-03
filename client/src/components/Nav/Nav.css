@@ -24,19 +24,30 @@
     text-align: center;
 }
 
-.nombre{
-    text-align: left;
-    padding-right: 10%;
+.recipeContainer{
+    width: 90%;
+    display: flex;
+    height: 80px;
+    margin: 5px;
+    text-align: center;
+    justify-content: flex-end;
+    align-items: center;
+}
+.addRecipe{
+    width: 90px;
+    height: 70px;
     display: flex;
     justify-content: flex-end;
-    flex-direction: row;
-    flex-wrap: nowrap;
     align-items: center;
+    filter: saturate(0) brightness(1.50);
 }
-.userimage{
-    width: 70px;
+
+.addRecipe:hover{
+    width: 90px;
     height: 70px;
-    border-radius: 100px;
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
-    margin-left:25px;
+    filter: saturate(1);
 }
+

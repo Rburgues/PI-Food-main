@@ -1,5 +1,5 @@
 
-import { ALL_RECIPES, SEARCH, FILTER_TYPE, ORDER_BY_NAME } from "./action";
+import { ALL_RECIPES, SEARCH, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS } from "./action";
 import { ALLTYPE } from "../components/Sidebar/Sidebar";
 
 
@@ -44,6 +44,25 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 Recipes: sortedNames
             }
+
+        case ORDER_BY_HEALTHSCORE:
+            let sortHealthScore = [...state.Recipes];
+            if (action.payload === '0-100') {
+                sortHealthScore = sortHealthScore.sort((a, b) => a.healthScore > b.healthScore ? 1 : -1)
+            } else {
+                sortHealthScore = sortHealthScore.sort((a, b) => a.healthScore < b.healthScore ? 1 : -1)
+            }
+            return {
+                ...state,
+                Recipes: sortHealthScore
+            }
+
+            case CLEAR_PAYLOADS:
+            return {
+                ...state,
+                detail: action.payload,
+                
+            };
 
         default:
             return state

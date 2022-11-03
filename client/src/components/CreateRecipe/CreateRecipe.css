@@ -1,0 +1,27 @@
+.contentBody {
+    background-color: rgb(245, 223, 190);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+
+.formContainer {
+    width: 100%;
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 30px;
+    grid-auto-rows: minmax(100px, auto);
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.form{
+    text-align: center;
+    margin-top: 30%;
+}
+
+

@@ -1,6 +1,5 @@
-import images from '../../images/404.png'
-import Nav from '../Nav/Nav'
-import Sidebar from '../Sidebar/Sidebar'
+import image404 from '../../images/PageNotFound404.png'
+import Nav from '../NavVacia/NavVacia'
 import './PageNotFound.css'
 
 export const PageNotFound = () => {
@@ -10,7 +9,7 @@ export const PageNotFound = () => {
       <Nav />
       {/* <Sidebar /> */}
       <div className='wrappers'>
-      <img className='pageNotFound' src={images} />
+      <img className='pageNotFound' src={image404} />
     </div>
     </div >
   )
