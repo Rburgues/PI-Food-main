@@ -13,12 +13,12 @@ export default function Card({ id, name, image, diets, healthScore }) {
                     <img src={image} alt="Imagen" />
                 </Link>
             </div>
-              <div>
-             
-                <h3 className="nameRecipe" >{name}</h3>
-               
-                </div>
-                <div>
+            <div>
+                <Link to={`${id}`}>
+                    <h3 className="nameRecipe" >{name}</h3>
+                </Link>
+            </div>
+            <div>
                 {diets ? <p className="dietsRecipe">Diets: {diets}</p> : null}
             </div>
             <div>

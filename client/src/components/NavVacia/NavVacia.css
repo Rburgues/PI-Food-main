@@ -43,15 +43,16 @@
 
 .btnAtras {
     width: 100%;
-    height: 40px;
-    font-weight: 600;
+    height: 50px;
+    font-weight: 800;
     border-radius: 25px;
-    margin: 0, auto;
-    padding-left: 40px;
-    padding-right: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 20px 30px 20px 20px;
     background: #f5dfbe;
     color: rgb(0, 0, 0);
-    font-size: 15px;
+    font-size: 16px;
     border: none;
     cursor: pointer;
 }

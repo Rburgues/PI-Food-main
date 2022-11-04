@@ -1,13 +1,20 @@
+.backHome {
+    background-color: rgb(245, 223, 190);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: row-reverse;
+
+}
 
 .wrapper {
     width: 85%;
     margin-top: 100px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 30px;
-    grid-auto-rows: minmax(100px, auto);
-    padding-left: 70px;
-    padding-right: 70px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 60px;
+    grid-auto-rows: minmax(10px, auto);
+    padding-left: 120px;
+    padding-right: 120px;
     padding-top: 30px;
     padding-bottom: 50px;
 }
@@ -27,13 +34,17 @@
     grid-column-start: 2;
     grid-column-end: 4;
     float: right;
-   
+
 }
 
-.back {
-    background-color: rgb(245, 223, 190);
-    background-size: 100% 100%;
-    display: flex;
-    flex-direction: row-reverse;
-
+.paginationHome {
+    padding-top: 20px;
+    width: 55%;
+    position: relative;
+    margin: 0 auto;
+    height: 70px;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    
 }

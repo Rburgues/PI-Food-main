@@ -1,17 +1,22 @@
-.back {
+.backDetails {
     background-color: rgb(245, 223, 190);
     background-size: 100% 100%;
     display: flex;
     flex-direction: row-reverse;
-
+    padding-top: 40px;
+    padding-bottom: 60px;
 }
 
 .recipeDetail {
-    width: 100%;
+    width:60%;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 25px;
+    border: 4px solid rgb(231, 197, 146);
     margin-top: 100px;
     display: grid;
+    background-color: #FFF;
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 30px;
     grid-auto-rows: minmax(0px, auto);
     padding-left: 70px;
     padding-right: 70px;
@@ -20,9 +25,10 @@
 }
 
 .contDetails {
-    width: 100%;
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
     height: 100%;
-    margin-top: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,16 +46,16 @@
 }
 
 .contImgSummary {
-    
     margin: 0 auto;
     position: relative;
-    width: 60%;
+    width: 100%;
+    padding-top: 25px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 .summaryText{
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .stepsText{
@@ -58,9 +64,9 @@
 }
 
 .imgRecipe {
-    width: 80%;
+    width: 90%;
     height: 100%;
-    border: 10px solid #FFF;
+    border: 2px solid rgb(190, 86, 0);
     border-radius: 80px 5px 80px 5px;
 
 }
@@ -102,7 +108,7 @@
 }
 
 .stepsBox{
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 30px 700px;

@@ -1,10 +1,3 @@
-.contentBody {
-    background-color: rgb(245, 223, 190);
-    background-size: 100% 100%;
-    display: flex;
-    flex-direction: row-reverse;
-
-}
 
 .formContainer {
     width: 100%;
@@ -19,7 +12,7 @@
     padding-bottom: 50px;
 }
 
-.back {
+.backCreate {
     background-color: rgb(245, 223, 190);
     background-size: 100% 100%;
     display: flex;

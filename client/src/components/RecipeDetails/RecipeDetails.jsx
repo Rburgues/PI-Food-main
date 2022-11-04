@@ -19,26 +19,28 @@ function RecipeDetails() {
 
   useEffect(() => {
     dispatch(AllID(id))
-  },[dispatch])
+  }, [dispatch])
 
   let recipe = useSelector(state => state.RecipeDetails)
   let recipeSteps = recipe.steps
 
 
   return (
+    <>
+<Nav />
+    <div className="backDetails">
 
-    <div className="back">
-
-      <Nav />
+      
 
       {
         <div className="recipeDetail">
-
-          <h2 className="title">{recipe.name}</h2>
-
+          <div className="titleRecipe">
+            <h2 className="title">{recipe.name}</h2>
+          </div>
           <div className="contImgSummary">
             <img className="imgRecipe" src={recipe.image ? recipe.image : "https://canalcocina.es/medias/_cache/zoom-7633d99ea9677004a4988e94e5d30aa0-920-518.jpg"} alt="Imagen" width="200px" height="250px" />
             <div className="summaryText" dangerouslySetInnerHTML={{ __html: recipe.summary }}></div>
+          <br></br>
           </div>
 
           <div className="contDetails">
@@ -47,24 +49,22 @@ function RecipeDetails() {
             <h3 className="healthS"> Health Score: {recipe.healthScore} </h3>
           </div>
 
-         
+          <div className="containerBg">
             {recipe.steps && recipe.steps.length ? <h4 className="summary">Step by Step:</h4> : null}
-        
-          <div> {recipeSteps &&
-            recipeSteps.map((e) => {
-              return (
-                <div className="stepsBox" key={e.number}>
-                <h4>{e.number}</h4> <div className="stepsText">{e.step}</div>
-                 
-                </div>
-              );
-            })}</div>
+            {recipeSteps &&
+              recipeSteps.map((e) => {
+                return (
+                  <div className="stepsBox" key={e.number}>
+                    <h4>{e.number}</h4> <div className="stepsText">{e.step}</div>
 
+                  </div>
+                );
+              })}</div>
         </div>
-
 
       }
     </div>
+    </>
   )
 }
 

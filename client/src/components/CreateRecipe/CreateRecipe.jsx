@@ -7,7 +7,7 @@ export default function CreateRecipe() {
 
 
     return (
-        <div className='back'>
+        <div className='backCreate'>
             <NavVacia />
 
             <div className='formContainer'>

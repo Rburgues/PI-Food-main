@@ -4,6 +4,7 @@ import './NavVacia.css'
 import logo from '../../images/hf_logo.png'
 import addRecipe from '../../images/addRecipe.png'
 import { Link } from 'react-router-dom'
+import homeIcon from '../../images/home.png'
 
 
 export default function Nav() {
@@ -19,7 +20,7 @@ export default function Nav() {
             </div>
             <div className='btnContent'>
                 <Link to='/home'>
-                    <button className='btnAtras'>BACK TO HOME</button>
+                    <button className='btnAtras'><img className='searchIcon' src={homeIcon} /> BACK TO HOME</button>
                 </Link>
             </div>
             <div className='recipeContainer'>

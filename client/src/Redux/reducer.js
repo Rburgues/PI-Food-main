@@ -1,6 +1,6 @@
 
 import { ALL_RECIPES, SEARCH, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS, ALL_ID} from "./action";
-import { ALLTYPE } from "../components/Sidebar/Sidebar";
+import { ALLTYPE } from "../components/Sidebar/sidebar";
 
 
 const initialState = {
