@@ -29,6 +29,10 @@
 
 }
 
+.button1:disabled{
+    border: 3px solid rgb(143, 142, 142);
+    color:  rgb(158, 155, 155);
+}
 .button1:hover {
     transform: scale(1.05);
     cursor: pointer;
@@ -60,6 +64,7 @@
     transform: scale(1.05);
     cursor: pointer;
 }
+
 
 .actualP{
     list-style-type: none;
