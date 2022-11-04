@@ -8,18 +8,25 @@ export default function Card({ id, name, image, diets, healthScore }) {
     return (
         <div className="card">
 
-            <div className="">
-                <Link className="Link" to={`${id}`}>
-                    <img className="imgCard" src={image} alt="Imagen" />
-                
-                    <h3 className="h3" >{name}</h3>
-            
-                    {diets ? <p className="p">Diets: {diets}</p> : null}
-                    <h3 className="Head">Health Score: {healthScore}</h3>
-
+            <div className="imgCard">
+                <Link to={`${id}`}>
+                    <img src={image} alt="Imagen" />
                 </Link>
-
             </div>
+              <div>
+             
+                <h3 className="nameRecipe" >{name}</h3>
+               
+                </div>
+                <div>
+                {diets ? <p className="dietsRecipe">Diets: {diets}</p> : null}
+            </div>
+            <div>
+                <h3 className="healthS">Health Score: {healthScore}</h3>
+            </div>
+
+
+
 
 
 

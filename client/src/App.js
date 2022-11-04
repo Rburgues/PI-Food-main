@@ -16,8 +16,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
             <Route exact path="/home" element={<Home/>} />                         
-            <Route path="/home/:id" element={<RecipeDetails/>}/>
-            <Route path="/recipe" element={<CreateRecipe/>}/>
+            <Route  path="/home/:id" element={<RecipeDetails/>}/>
+            <Route  path="/recipe" element={<CreateRecipe/>}/>
             <Route path="*" element={<PageNotFound/>} /> 
 
 

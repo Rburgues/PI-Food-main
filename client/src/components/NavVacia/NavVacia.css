@@ -9,6 +9,7 @@
     background-color: rgb(66, 32, 0);
     color: #FFFFFF;
     position: fixed;
+    z-index: 999999;
 }
 
 .logoVacio {

@@ -42,7 +42,7 @@ export function AllSearch(name){
 
 export  function AllID(id){
     return function(dispatch){
-        axios.get(`api/recipes/${id}`)
+        axios.get(`http://localhost:3001/recipes/${id}`)
         .then((res)=>{
             dispatch({
                 type: ALL_ID,
@@ -64,13 +64,13 @@ export function FilterDiet(order){
 
 export function orderByName(payload) {
     return {
-        type: "ORDER_BY_NAME",
+        type: ORDER_BY_NAME,
         payload: payload
     }
 }
 export function orderByHealthScore(payload) {
     return {
-        type: 'ORDER_BY_HEALTHSCORE',
+        type: ORDER_BY_HEALTHSCORE,
         payload: payload,
     }
 }

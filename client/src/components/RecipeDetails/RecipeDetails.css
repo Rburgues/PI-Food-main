@@ -7,9 +7,12 @@
 }
 
 .recipeDetail {
-    width: 85%;
-    
+    width: 100%;
     margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 30px;
+    grid-auto-rows: minmax(0px, auto);
     padding-left: 70px;
     padding-right: 70px;
     padding-top: 30px;
@@ -19,74 +22,90 @@
 .contDetails {
     width: 100%;
     height: 100%;
+    margin-top: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column-reverse;
 
 }
 
-.contenedor2 {
+.contStep {
     width: 80%;
-    margin-top: 100px;
-    padding-left: 120px;
-    padding-right: 70px;
-    padding-top: 30px;
-    padding-bottom: 50px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.contImgSummary {
+    
+    margin: 0 auto;
+    position: relative;
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.summaryText{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.stepsText{
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .imgRecipe {
-    width: 45%;
-    height: 45%;
-    border-radius: 20px;
+    width: 80%;
+    height: 100%;
+    border: 10px solid #FFF;
+    border-radius: 80px 5px 80px 5px;
 
 }
-
 
 
 .title {
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 25px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
-    color: #0473faf1;
+    font-size: 24px;   
+    color: #d56000;
     display: flex;
     justify-content: center;
     margin: 20px;
-    padding-left: 20px;
 }
 
 .diets {
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 18px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
-    color: rgb(255, 0, 144);
+  
+    font-size: 18px;   
+    color: rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     margin: 20px;
-    padding-left: 20px;
+ 
 }
 
-.health {
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 18px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
-    color: #028625e8;
+.healthS {
+    font-size: 18px;    
+    color: #028625;
     display: flex;
     justify-content: center;
-    margin: 20px;
-    padding-left: 20px;
+    margin: 10px;   
 }
 
-.summary {
-    font-family: "Comic Sans MS", cursive, sans-serif;
+.summary {  
     font-size: 25px;
-    letter-spacing: 2px;
-    word-spacing: 2px;
-    color: #fc080ce8;
+    color: #fc080c;
     display: flex;
     justify-content: center;
     margin: 20px;
-    padding-left: 20px;
+   
+}
+
+.stepsBox{
+    width: 60%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 30px 700px;
+    justify-content: center;
+    align-items: start;
 }

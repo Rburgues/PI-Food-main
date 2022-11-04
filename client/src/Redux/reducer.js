@@ -4,8 +4,8 @@ import { ALLTYPE } from "../components/Sidebar/Sidebar";
 
 
 const initialState = {
-    Recipes: [],
-    Food: [],
+    Recipes: [],   
+    Filters:[],
     RecipeDetails: []
 }
 
@@ -15,7 +15,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 Recipes: action.payload,
-                Foods: action.payload
+                Filters: action.payload
             }
         case SEARCH:
             if (typeof action.payload === "string") {
@@ -27,7 +27,7 @@ const rootReducer = (state = initialState, action) => {
                 Recipes: action.payload
             }
         case FILTER_TYPE:
-            let FilterType = [...state.Foods]
+            let FilterType = [...state.Filters]
             let AllType = action.payload === ALLTYPE ? FilterType : FilterType.filter(e => e.diets.find(i => i === action.payload))
 
             return {
@@ -61,7 +61,7 @@ const rootReducer = (state = initialState, action) => {
             case CLEAR_PAYLOADS:
             return {
                 ...state,
-                detail: action.payload,
+                Recipes: action.payload,
                 
             };
 
@@ -69,7 +69,7 @@ const rootReducer = (state = initialState, action) => {
             return {
             ...state,
             RecipeDetails: action.payload
-            }
+            };
 
         default:
             return state
