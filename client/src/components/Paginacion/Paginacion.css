@@ -16,82 +16,56 @@
 }
 
 .button1 {
-    background: linear-gradient(90deg, rgba(9, 198, 247, 1) 0%, rgba(220, 249, 14, 1) 35%, rgba(127, 175, 241, 1) 92%);
-    ;
-    background-size: 800% 400%;
+    background-color:rgb(245, 223, 190);
     padding: 1em 2em;
+    height: 48px;
     display: inline-block;
-    border: none;
+    border: 3px solid rgb(66, 32, 0);
     border-radius: 10px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
-    color: white;
-    transition: all .5s ease-in-out;
-    animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
+    color: rgb(66, 32, 0);
+   
 
 }
 
 .button1:hover {
-    animation: gradient 3s infinite;
     transform: scale(1.05);
     cursor: pointer;
 }
 
 .button1:active {
-    animation: gradient 3s infinite;
-    transform: scale(0.8);
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+     transform: scale(0.8);
 }
 
 .button2 {
-    background: linear-gradient(-45deg, #3f00b5, #9f69fe, #27c8b7, #3f00b5);
-    background-size: 800% 400%;
-    padding: 1em 1em;
+   background-color:rgb(245, 223, 190);
+   padding: 10px;
+   height: 40px;
+   width: 40px;
     display: inline-block;
-    border: none;
-    border-radius: 10px;
+    border: 3px solid rgb(66, 32, 0);
+    border-radius: 250px;
     font-size: 12px;
     font-weight: 700;
-    color: white;
-   
-    animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
+    color: rgb(66, 32, 0);
+    font-size: 13px;
+    font-weight: 700;
+    margin: 5px;
 
 }
 
 .button2:hover {
-    animation: gradient 3s infinite;
+    background-color:rgb(212, 174, 117);
     transform: scale(1.05);
     cursor: pointer;
 }
 
-.button2:active {
-    border: 5px solid #FFF;
-    animation: gradient 3s infinite;
-}
+.actualP{
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+    margin-top: 10px;
 }

@@ -34,8 +34,6 @@ export default function Home() {
   }
 
 
-
-
   useEffect(() => {
     dispatch(allRecipes());
 
@@ -65,6 +63,7 @@ export default function Home() {
                   healthScore={e.healthScore} />
               )
             })
+            
           ) : !all_Recipes.length > 0 && loading ? (
             <div className="loading" ><Loading /></div>
           ) : (

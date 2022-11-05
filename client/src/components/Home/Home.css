@@ -38,13 +38,15 @@
 }
 
 .paginationHome {
-    padding-top: 20px;
+    padding-top: 8%;
     width: 55%;
     position: relative;
+    display: flex;
     margin: 0 auto;
     height: 70px;
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 4;
-    
+    justify-content: center;
+    align-items: center;
 }
