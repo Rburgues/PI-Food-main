@@ -1,7 +1,6 @@
 import './Nav.css'
 
 import logo from '../../images/hf_logo.png'
-import addRecipe from '../../images/addRecipe.png'
 import { Link } from 'react-router-dom'
 import Search from '../Search/Search'
 import React from 'react'
@@ -20,9 +19,7 @@ export default function Nav() {
             </div>
             <Search />
             <div className='recipeContainer'>
-                <Link to={'/recipe'}>
-                    <img className='addRecipe' src={addRecipe} title='Hello, click here to Create a New Recipe!' />
-                </Link>
+               
             </div>
         </div>
 

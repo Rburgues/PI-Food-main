@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const ALL_RECIPES = "ALL_RECIPES"
 export const SEARCH = "SEARCH"
+export const DIET_LIST = 'DIET_LIST'
 export const FILTER_TYPE = "FILTER_TYPE"
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE';
@@ -55,7 +56,22 @@ export  function AllID(id){
     }
 }
 
-export function FilterDiet(order){
+export function dietsList() {
+
+    return async function (dispatch) {
+        try {
+            var diets = await axios.get('http://localhost:3001/diets');
+              return dispatch({
+                type: DIET_LIST,
+                payload: diets.data
+            });
+        } catch (error) {
+            console.log(error.response.data)
+        }
+    }
+};
+
+export function filterDiet(order){
     return {
         type: FILTER_TYPE,
         payload: order

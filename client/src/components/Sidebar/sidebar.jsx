@@ -1,8 +1,10 @@
 import React from 'react'
 import './Sidebar.css'
 import { useDispatch } from "react-redux"
-import { FilterDiet, orderByName, orderByHealthScore } from '../../Redux/action'
+import { filterDiet, orderByName, orderByHealthScore } from '../../Redux/action'
 import { useState } from 'react';
+import recipeIcon from '../../images/recipeIcon.png'
+import { Link } from 'react-router-dom';
 
 
 
@@ -17,7 +19,7 @@ export default function Sidebar() {
 
     function handleOnChangeDiet(e) {
         e.preventDefault();
-        dispatch(FilterDiet(e.target.value))
+        dispatch(filterDiet(e.target.value))
     }
 
     function handleSortName(e) {
@@ -40,10 +42,20 @@ export default function Sidebar() {
 
         <div className='aside'>
 
-            <div>
-                <h2>FILTROS</h2>
-            </div>
+               <div className='titleRecipes'>
+                Recipes  Menu
+                </div>
 
+            <Link to="/recipe">
+                <div className='addRecipe'>
+                    <img className='btnIcon' src={recipeIcon} />Create Recipe
+                </div>
+            </Link>
+            
+                <div className='titleFilters'>
+                Sorting & Filters
+                </div>
+            
             <div className='filterContent'><label>Filter by Diet</label><br></br><select onChange={(e) => handleOnChangeDiet(e)} type='option'>
                 <option value={ALLTYPE}>Select All</option>
                 <option value="gluten free">Gluten Free</option>
@@ -68,7 +80,9 @@ export default function Sidebar() {
             </div>
 
 
-
+            <div className='titleDefault'>
+            Default Values
+            </div>
 
             <div>
 
@@ -76,10 +90,12 @@ export default function Sidebar() {
 
             </div>
 
-            <div></div>
-            <div></div>
+
+           
             <div></div>
             
+
+
 
             <div className='createdby'>Created by:<br></br>
                 Richard Burgues</div>

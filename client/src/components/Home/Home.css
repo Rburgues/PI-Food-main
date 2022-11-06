@@ -22,7 +22,7 @@
 .error404 {
     width: 100%;
     display: grid;
-    grid-column-start: 2;
+    grid-column-start: 1;
     grid-column-end: 4;
     padding-top: 10%;
     justify-content: center;

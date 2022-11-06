@@ -1,7 +1,7 @@
 .aside {
   width: 14%;
   display: grid;
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: repeat(12, 80px);
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -30,13 +30,7 @@
   text-align: center;
 }
 
-.score-text{
-  display: flex;
-}
 
-.range{
-  width: 190px;
-}
 
 select {
   /* Reset */
@@ -68,10 +62,6 @@ select::-ms-expand {
 }
 
 .btnReset{
-
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
     border: 0;
     outline: 0;
     font: inherit;
@@ -99,3 +89,58 @@ select::-ms-expand {
     to{scale: 1.03}
     
   }
+
+  .addRecipe{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    width: 200px;
+    height: 50px;
+    padding: 0 1em 0 1em;
+    background:  linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.2) 3em);
+    color: rgb(0, 0, 0);
+    border-radius: 0.5em;
+    border: 2px solid rgba(255, 255, 255, 0.500);
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 15px;
+}
+.addRecipe:hover {
+  animation: up 0.1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+.btnIcon{  
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+}
+.titleRecipes{
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  margin-top: 15%;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.titleFilters{
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 5%;
+}
+
+.titleDefault{
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 15%;
+}

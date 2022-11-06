@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { allRecipes } from "../../Redux/action";
+import { allRecipes, dietsList } from "../../Redux/action";
 import CardRecipe from "../CardRecipe/CardRecipe.jsx";
 import Nav from '../Nav/Nav';
 import Sidebar from '../Sidebar/sidebar';
@@ -16,6 +16,7 @@ export default function Home() {
   let dispatch = useDispatch()
   let all_Recipes = useSelector((state) => state.Recipes)
   const [loading, setLoading] = useState(true);
+  const [setOrder] = useState('')
 
   if (all_Recipes.length > 0 && loading) {
     setLoading(false);
@@ -23,10 +24,10 @@ export default function Home() {
 
 
   const [pagina, setPagina] = useState(1)
-  const [porPagina, setPorPagina] = useState(9)
+  const porPagina = 9
   const indexOfUltimareceta = pagina * porPagina
   const indexOfPrimerareceta = indexOfUltimareceta - porPagina
-  const currentRecetas = all_Recipes.slice(indexOfPrimerareceta, indexOfUltimareceta)
+  const currentRecetas = Array.from(all_Recipes).slice(indexOfPrimerareceta, indexOfUltimareceta)
   const maximo = all_Recipes.length / porPagina
 
   const paginado = (numeroDePagina) => {
@@ -35,9 +36,9 @@ export default function Home() {
 
 
   useEffect(() => {
-    dispatch(allRecipes());
-
-  }, [dispatch])
+    dispatch(allRecipes())
+    dispatch(dietsList())
+     }, [dispatch])
 
 
 
@@ -50,7 +51,7 @@ export default function Home() {
       <div className="wrapper" >
 
         {
-          all_Recipes.length > 0 && !loading ? (
+          currentRecetas.length > 0 && !loading ? (
             currentRecetas.map(e => {
 
               return (
@@ -63,15 +64,15 @@ export default function Home() {
                   healthScore={e.healthScore} />
               )
             })
-            
-          ) : !all_Recipes.length > 0 && loading ? (
+
+          ) : !currentRecetas.length > 0 && loading ? (
             <div className="loading" ><Loading /></div>
           ) : (
             <div className="error404" ><ErrorPage /></div>
           )
 
         }
-        <div></div>
+        <div></div>{
         <div className='paginationHome'>
           <Paginacion
             porPagina={porPagina}
@@ -80,9 +81,10 @@ export default function Home() {
             paginado={paginado}
             setPagina={setPagina}
             maximo={maximo}
-          /></div>
+          />
+        </div>}
+        
       </div>
-
 
     </div>
 

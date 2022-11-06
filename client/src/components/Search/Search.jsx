@@ -13,7 +13,7 @@ function Search() {
         e.preventDefault()
         dispatch(AllSearch(search))
         dispatch(resetData());
-        setSearch("")
+      
 
     }
     function onInputChange(e){
