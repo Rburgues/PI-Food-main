@@ -1,21 +1,25 @@
 import React from 'react'
 import './Sidebar.css'
-import { useDispatch } from "react-redux"
-import { filterDiet, orderByName, orderByHealthScore } from '../../Redux/action'
-import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux"
+import { filterDiet, orderByName, orderByHealthScore, dietsList } from '../../Redux/action'
+import { useState, useEffect } from 'react';
 import recipeIcon from '../../images/recipeIcon.png'
 import { Link } from 'react-router-dom';
 
 
-
 export const ALLTYPE = "ALLTYPE"
-
 
 
 export default function Sidebar() {
 
     const dispatch = useDispatch()
     const [order, setOrder] = useState('')
+
+    const dietList = useSelector((state) => state.DietList);
+
+    useEffect(() => {
+        dispatch(dietsList())
+           }, [dispatch])
 
     function handleOnChangeDiet(e) {
         e.preventDefault();
@@ -58,14 +62,8 @@ export default function Sidebar() {
             
             <div className='filterContent'><label>Filter by Diet</label><br></br><select onChange={(e) => handleOnChangeDiet(e)} type='option'>
                 <option value={ALLTYPE}>Select All</option>
-                <option value="gluten free">Gluten Free</option>
-                <option value="ketogenic">Ketogenic</option>
-                <option value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
-                <option value="paleolithic">Paleolithic</option>
-                <option value="pescatarian">Pescatarian</option>
-                <option value="primal">Primal</option>
-                <option value="vegan">Vegan</option>
-                <option value="whole 30">Whole 30</option>
+                {dietList.map(e => 
+                    <option key={e} value={e}>{e}</option>)}
             </select>
             </div>
 

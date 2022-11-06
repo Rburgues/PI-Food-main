@@ -16,7 +16,7 @@ export default function Home() {
   let dispatch = useDispatch()
   let all_Recipes = useSelector((state) => state.Recipes)
   const [loading, setLoading] = useState(true);
-  const [setOrder] = useState('')
+  
 
   if (all_Recipes.length > 0 && loading) {
     setLoading(false);
@@ -37,8 +37,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(allRecipes())
-    dispatch(dietsList())
-     }, [dispatch])
+       }, [dispatch])
 
 
 

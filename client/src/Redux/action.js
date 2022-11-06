@@ -60,10 +60,10 @@ export function dietsList() {
 
     return async function (dispatch) {
         try {
-            var diets = await axios.get('http://localhost:3001/diets');
+            var res = await axios.get('http://localhost:3001/diets');
               return dispatch({
                 type: DIET_LIST,
-                payload: diets.data
+                payload: res.data
             });
         } catch (error) {
             console.log(error.response.data)

@@ -1,12 +1,13 @@
 
-import { ALL_RECIPES, SEARCH, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS, ALL_ID} from "./action";
+import { ALL_RECIPES, SEARCH, DIET_LIST, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS, ALL_ID } from "./action";
 import { ALLTYPE } from "../components/Sidebar/sidebar";
 
 
 const initialState = {
-    Recipes: [],   
-    Filters:[],
-    RecipeDetails: []
+    Recipes: [],
+    Filters: [],
+    DietList: [],
+    RecipeDetails: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -15,8 +16,8 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 Recipes: action.payload,
-                Filters: action.payload
-            }
+                Filters: action.payload,
+                }
         case SEARCH:
             if (typeof action.payload === "string") {
                 alert("Not Found the recipes");
@@ -26,9 +27,15 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 Recipes: action.payload
             }
+        case DIET_LIST:
+            return {
+                ...state,
+                DietList: action.payload
+            }
+
         case FILTER_TYPE:
             let FilterType = [...state.Filters]
-            let AllType = action.payload === ALLTYPE ? FilterType : FilterType.filter(e => e.diets.find(i => i === action.payload))
+            let AllType = action.payload === ALLTYPE ? FilterType : FilterType?.filter(e => e.diets.find(i => i[0].toUpperCase() + i.substr(1) === action.payload))
 
             return {
                 ...state,
@@ -58,17 +65,17 @@ const rootReducer = (state = initialState, action) => {
                 Recipes: sortHealthScore
             }
 
-            case CLEAR_PAYLOADS:
+        case CLEAR_PAYLOADS:
             return {
                 ...state,
                 Recipes: action.payload,
-                
+
             };
 
-            case ALL_ID:
+        case ALL_ID:
             return {
-            ...state,
-            RecipeDetails: action.payload
+                ...state,
+                RecipeDetails: action.payload
             };
 
         default:

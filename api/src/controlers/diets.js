@@ -6,7 +6,7 @@ const { API_KEY } = process.env;
 const getApiDiets = async () => {
 
     const apiDiets = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10` //cambiar a 100 al momento del paginado!
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100` //cambiar a 100 al momento del paginado!
     );
 
     try {
@@ -15,7 +15,7 @@ const getApiDiets = async () => {
         for (let i = 0; i < data.length; i++) {               // Bucle exterior
             for (let j = 0; j < data[i].diets.length; j++) {         // Bucle interior
                 //    console.log(results[i].diets[j])
-                dietsApi.push(data[i].diets[j])
+                dietsApi.push(data[i].diets[j][0].toUpperCase() + data[i].diets[j].substr(1))
             }
         }
         const res = new Set(dietsApi);
