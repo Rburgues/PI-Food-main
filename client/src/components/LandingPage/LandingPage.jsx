@@ -12,10 +12,10 @@ export const LandingPage = () => {
   return (
 
 
-    <div class="containers">
-      <div class="forms_containers">
+    <div className="containers">
+      <div className="forms_containers">
 
-        <div class="signin_signup"> <img src={logo} /><br></br>
+        <div className="signin_signup"> <img src={logo} /><br></br>
           <h1>Welcome to Henry Food!</h1>
           <h3>Please click the DOOR to enter</h3>
           <div className='btnCont'>

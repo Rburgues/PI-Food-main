@@ -68,7 +68,7 @@ const rootReducer = (state = initialState, action) => {
         case CLEAR_PAYLOADS:
             return {
                 ...state,
-                Recipes: action.payload,
+                RecipeDetails: action.payload,
 
             };
 

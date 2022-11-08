@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 
 import React from 'react'
-import { AllID } from "../../Redux/action"
+import { AllID, resetData } from "../../Redux/action"
 
 import './RecipeDetails.css'
 import Nav from "../NavVacia/NavVacia"
