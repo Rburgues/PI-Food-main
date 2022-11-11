@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { allRecipes, dietsList, resetData } from "../../Redux/action";
+import { allRecipes, dietsList } from "../../Redux/action";
 import CardRecipe from "../CardRecipe/CardRecipe.jsx";
 import Nav from '../Nav/Nav';
 import Sidebar from '../Sidebar/sidebar';
@@ -27,7 +27,7 @@ export default function Home() {
   const porPagina = 9
   const indexOfUltimareceta = pagina * porPagina
   const indexOfPrimerareceta = indexOfUltimareceta - porPagina
-  const currentRecetas = Array.from(all_Recipes).slice(indexOfPrimerareceta, indexOfUltimareceta)
+  const currentRecetas = all_Recipes?.slice(indexOfPrimerareceta, indexOfUltimareceta)
   const maximo = all_Recipes.length / porPagina
 
   const paginado = (numeroDePagina) => {
@@ -37,8 +37,6 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(allRecipes())
-    dispatch(dietsList())
-    dispatch(resetData())
        }, [dispatch])
 
 
