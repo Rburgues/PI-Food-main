@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { allRecipes, dietsList } from "../../Redux/action";
+import { allRecipes, dietsList, resetData } from "../../Redux/action";
 import CardRecipe from "../CardRecipe/CardRecipe.jsx";
 import Nav from '../Nav/Nav';
 import Sidebar from '../Sidebar/sidebar';
@@ -37,6 +37,8 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(allRecipes())
+    dispatch(dietsList())
+    dispatch(resetData())
        }, [dispatch])
 
 

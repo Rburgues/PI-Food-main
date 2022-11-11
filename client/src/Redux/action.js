@@ -100,3 +100,12 @@ export function resetData() {
     }
 }
 
+export function createRecipe(data){
+    return async function(dispatch){
+       const respon = axios.post("api/create/", data)
+       return respon
+       .catch((error)=>{
+           console.log(error)
+       })
+    }
+}

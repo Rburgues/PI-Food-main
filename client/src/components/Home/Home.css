@@ -29,10 +29,9 @@
 }
 
 .loading {
-    width: 100%;
-    display: flex;
+  
     grid-column-start: 2;
-    grid-column-end: 4;
+    grid-column-end: 2;
     float: right;
 
 }

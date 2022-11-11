@@ -1,11 +1,16 @@
 .backDetails {
     background-color: rgb(245, 223, 190);
     background-size: 100% 100%;
-    display: flex;
-    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
     padding-top: 40px;
     padding-bottom: 60px;
 }
+
+.load_detail{
+    visibility: none;
+}
+
 
 .recipeDetail {
     width:60%;
