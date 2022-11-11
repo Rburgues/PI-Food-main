@@ -62,7 +62,7 @@ export default function Sidebar() {
             
             <div className='filterContent'><label>Filter by Diet</label><br></br><select onChange={(e) => handleOnChangeDiet(e)} type='option'>
                 <option value={ALLTYPE}>Select All</option>
-                {dietList.map(e => 
+                {dietList?.map(e => 
                     <option key={e} value={e}>{e}</option>)}
             </select>
             </div>
