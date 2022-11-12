@@ -7,12 +7,13 @@ export const FILTER_TYPE = "FILTER_TYPE"
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE';
 export const CLEAR_PAYLOADS = 'CLEAR_PAYLOADS';
+export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const ALL_ID = 'ALL_ID';
 
 
 export function allRecipes(){
     return function(dispatch){
-        axios.get("http://localhost:3001/recipes")
+        axios.get('http://localhost:3001/recipes')
         .then((resp)=>{
             dispatch({
                 type: ALL_RECIPES,
@@ -100,12 +101,12 @@ export function resetData() {
     }
 }
 
-export function createRecipe(data){
-    return async function(dispatch){
-       const respon = axios.post("api/create/", data)
-       return respon
-       .catch((error)=>{
-           console.log(error)
-       })
+export function createRecipe(payload) {
+    //console.log(payload)
+    return async function () {
+        const creado = await axios.post('http://localhost:3001/recipes', payload)
+        //console.log(creado)
+        return creado;
+
     }
-}
+};

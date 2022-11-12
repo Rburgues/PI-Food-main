@@ -60,7 +60,7 @@ const getDataDB = async () => {
 
         {
           model: Diet,
-          attributes: ['diet_name'],
+          attributes: ['name'],
           through: {
             attributes: [],
           },

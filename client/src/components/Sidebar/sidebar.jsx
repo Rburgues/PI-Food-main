@@ -15,7 +15,7 @@ export default function Sidebar() {
     const dispatch = useDispatch()
     const [order, setOrder] = useState('')
 
-    const dietList = useSelector((state) => state.DietList);
+    const dietList = useSelector((state) => state.dietList);
 
     useEffect(() => {
         dispatch(dietsList())

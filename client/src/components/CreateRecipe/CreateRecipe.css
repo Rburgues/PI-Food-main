@@ -27,3 +27,8 @@
     flex-direction: column;
     align-items: center;
 }
+.dietasAgregadas{
+    display: flex;
+    justify-content: center;
+    width: 700px;
+}

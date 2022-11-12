@@ -1,12 +1,12 @@
 
-import { ALL_RECIPES, SEARCH, DIET_LIST, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS, ALL_ID } from "./action";
+import { ALL_RECIPES, SEARCH, DIET_LIST, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS, CREATE_RECIPE, ALL_ID } from "./action";
 import { ALLTYPE } from "../components/Sidebar/sidebar";
 
 
 const initialState = {
     Recipes: [],
     Filters: [],
-    DietList: [],
+    dietList: [],
     RecipeDetails: {}
 }
 
@@ -17,7 +17,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 Recipes: action.payload,
                 Filters: action.payload,
-                }
+            }
         case SEARCH:
             if (typeof action.payload === "string") {
                 alert("Not Found the recipes");
@@ -30,7 +30,7 @@ const rootReducer = (state = initialState, action) => {
         case DIET_LIST:
             return {
                 ...state,
-                DietList: action.payload
+                dietList: action.payload
             }
 
         case FILTER_TYPE:
@@ -71,6 +71,11 @@ const rootReducer = (state = initialState, action) => {
                 RecipeDetails: action.payload,
 
             };
+
+        case CREATE_RECIPE:
+            return {
+                ...state,
+            }
 
         case ALL_ID:
             return {

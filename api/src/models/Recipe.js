@@ -18,9 +18,6 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    score: {
-      type: DataTypes.DECIMAL(4,1),      
-    },
     healthScore: {
       type: DataTypes.DECIMAL(3,1),
       allowNull: false,

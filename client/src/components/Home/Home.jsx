@@ -27,7 +27,7 @@ export default function Home() {
   const porPagina = 9
   const indexOfUltimareceta = pagina * porPagina
   const indexOfPrimerareceta = indexOfUltimareceta - porPagina
-  const currentRecetas = all_Recipes?.slice(indexOfPrimerareceta, indexOfUltimareceta)
+  const currentRecetas = Array.from(all_Recipes).slice(indexOfPrimerareceta, indexOfUltimareceta)
   const maximo = all_Recipes.length / porPagina
 
   const paginado = (numeroDePagina) => {

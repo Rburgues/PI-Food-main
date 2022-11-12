@@ -6,7 +6,7 @@ const { API_KEY } = process.env;
 const getAllDiets = async () => {
 
     const apiDiets = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=20` //cambiar a 100 al momento del paginado!
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100` //cambiar a 100 al momento del paginado!
     );
 
     try {
