@@ -47,7 +47,12 @@ export default function CreateRecipe() {
             summary: "",
             image: "",
             healthScore: 0,
-            steps: [],
+            steps: [
+                {
+                    number:0,
+                    step:"",
+                }
+            ],
             diets: []
         }
     )
@@ -65,6 +70,35 @@ export default function CreateRecipe() {
             })
         );
     }
+
+    function handleAddStep(e) {
+        if (input.steps.length > 0){       
+            
+            setInput((input) => ({
+                ...input,
+                steps: [
+                    {
+                        number: 1,
+                        step: e.target.value
+                    } 
+                ],
+            }));
+
+        } else {     
+            setInput((input) => ({
+                ...input,
+                steps: [...input.steps,
+                    {
+                        number:input.steps.length+1,
+                        step: e.target.value
+                    } 
+                ],
+            }));
+            
+        }
+    }
+
+
     function handleSelect(e) {
         if (input.dietList?.includes(e.target.value)) {
             return 'Diet Type exists'
@@ -96,7 +130,12 @@ export default function CreateRecipe() {
             summary: "",
             image: "",
             healthScore: 0,
-            steps: [],
+            steps: [
+                {
+                    number:0,
+                    step:"",
+                }
+            ],
             diets: []
 
         })
@@ -205,7 +244,15 @@ export default function CreateRecipe() {
 
                     <label className="instructionsForm">
                         <span>Instructions: </span>
-                        <input className="textarea" type="text" name="steps" value={input.steps} onChange={(e) => handleChange(e)} />
+                        <input className="textarea" type="text" name="steps" value={input.steps[{}]} onChange={(e) => handleAddStep(e)} />
+                    
+                        {input.steps?.map(el =>
+                            <div key={el} className="dietasAgregadas">
+                                 {el.number} - <span>{el.step}</span><button className="btnDeleteStep" >Delete Step</button>
+                            </div>
+                        )}
+                    
+                    
                     </label>
 
                     <br></br>

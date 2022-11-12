@@ -102,11 +102,10 @@ export function resetData() {
 }
 
 export function createRecipe(payload) {
-    //console.log(payload)
-    return async function () {
-        const creado = await axios.post('http://localhost:3001/recipes', payload)
-        //console.log(creado)
-        return creado;
-
+    return async function (dispatch) {
+        return await axios.post(`http://localhost:3001/recipes/`,payload)
+        .then(data=> dispatch({
+            type: CREATE_RECIPE, 
+            payload: data.data}))
     }
 };

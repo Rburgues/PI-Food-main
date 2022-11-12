@@ -32,3 +32,7 @@
     justify-content: center;
     width: 700px;
 }
+
+.btnDeleteStep{
+    margin-left: 8px;
+}
