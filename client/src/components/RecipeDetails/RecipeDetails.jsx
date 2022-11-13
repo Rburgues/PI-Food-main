@@ -24,7 +24,7 @@ function RecipeDetails() {
   let recipe = useSelector(state => state.RecipeDetails)
   let recipeSteps = recipe.steps
   const [loading, setLoading] = useState(true);
-  
+  let num = 1;
 
   if ( RecipeDetails.name.length < 0 && loading) {
     setLoading(false);
@@ -59,12 +59,13 @@ function RecipeDetails() {
             </div>
 
             <div className="containerBg">
+              
               {recipe.steps && recipe.steps.length ? <h4 className="summary">Step by Step:</h4> : null}
               {recipeSteps &&
                 recipeSteps.map((e) => {
                   return (
                     <div className="stepsBox" key={e.number}>
-                      <h4>{e.number}</h4> <div className="stepsText">{e.step}</div>
+                      <h4>{num++}</h4> <div className="stepsText">{e.step}</div>
 
                     </div>
                   );

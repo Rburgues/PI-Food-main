@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from 'react';
-import { createRecipe, dietsList } from "../../Redux/action"
+import { createRecipe, dietsList, resetData } from "../../Redux/action"
 import './CreateRecipe.css'
 import NavVacia from '../NavVacia/NavVacia.jsx'
 
@@ -40,6 +40,9 @@ export default function CreateRecipe() {
     let dispatch = useDispatch()
     const dietList = useSelector((state) => state.dietList);
     const [errors, setErrors] = useState({});
+    let key = 1;
+    let num = 1;
+
 
     const [input, setInput] = useState(
         {
@@ -47,16 +50,11 @@ export default function CreateRecipe() {
             summary: "",
             image: "",
             healthScore: 0,
-            steps: [
-                {
-                    number:0,
-                    step:"",
-                }
-            ],
+            steps: [],
             diets: []
         }
     )
-    
+
 
     function handleChange(e) {
         setInput((input) => ({
@@ -72,30 +70,24 @@ export default function CreateRecipe() {
     }
 
     function handleAddStep(e) {
-        if (input.steps.length > 0){       
-            
-            setInput((input) => ({
-                ...input,
-                steps: [
-                    {
-                        number: 1,
-                        step: e.target.value
-                    } 
-                ],
-            }));
+        if (e.target.value == "") {
 
-        } else {     
+            alert('Enter almost one step')
+
+        } else {
             setInput((input) => ({
                 ...input,
                 steps: [...input.steps,
-                    {
-                        number:input.steps.length+1,
-                        step: e.target.value
-                    } 
+                {
+                    number: input.steps.length + 1,
+                    step: e.target.value
+                }
                 ],
             }));
-            
+
         }
+
+
     }
 
 
@@ -109,12 +101,11 @@ export default function CreateRecipe() {
                 ...input,
                 diets: [...input.diets, e.target.value],
             }));
-             
+
             setErrors(validate({
                 ...input,
                 [e.target.name]: e.target.value
             }));
-            
         }
     }
 
@@ -125,23 +116,18 @@ export default function CreateRecipe() {
             dispatch(createRecipe(input))
             alert('Recipe created succesfully!')
 
-        setInput({
-            name: "",
-            summary: "",
-            image: "",
-            healthScore: 0,
-            steps: [
-                {
-                    number:0,
-                    step:"",
-                }
-            ],
-            diets: []
+            setInput({
+                name: "",
+                summary: "",
+                image: "",
+                healthScore: 0,
+                steps: [],
+                diets: []
 
-        })
-    }else {
-        alert('Please complete all fields')
-    }
+            })
+        } else {
+            alert('Please complete all fields')
+        }
 
     }
 
@@ -150,6 +136,15 @@ export default function CreateRecipe() {
             ...input,
             diets: input.diets.filter(dietList => dietList !== e)
         })
+    }
+
+    function handleDeletStep(e) {
+        setInput({
+            ...input,
+            steps: input.steps.filter(dietList => dietList !== e)
+        })
+
+
     }
 
     useEffect(() => {
@@ -166,106 +161,107 @@ export default function CreateRecipe() {
 
                 <br></br>
 
-                <h1 className="titulo"> Create your Recipe </h1>
-
+                <h1 className="tituloCreateRecipe"> Create your Recipe </h1>
                 <br></br>
+            
 
                 <form className='containerForm' onSubmit={(e) => handleSubmit(e)}>
-                    <label className="titleForm">
-                        <span>Title: </span>
-                        <input className="Input1" type="text" name="name" value={input.name} onChange={(e) => handleChange(e)} />
-                        {errors.name && (
-                            <p className="error">{errors.name}</p>
-                        )}
-                    </label>
 
-                    <br></br>
+                    <div className='titleForm'>
+                        <label>
+                            <span>Title: </span>
+                            <input className="Input1" type="text" name="name" value={input.name} onChange={(e) => handleChange(e)} />
+                            {errors.name && (
+                                <p className="errorMsg">{errors.name}</p>
+                            )}
+                        </label>
+                    </div>
+             
 
-                    <label className="summaryForm">
-                        <span>Summary: </span>
-                        <input className="textarea" type="text" name="summary" value={input.summary} onChange={(e) => handleChange(e)} />
-                        {errors.summary && (
-                            <p className="error">{errors.summary}</p>
-                        )}
-                    </label>
+                    <div className='summaryForm'>
+                        <label>
+                            <span>Summary: </span>
+                            <input className="textarea" type="text" name="summary" value={input.summary} onChange={(e) => handleChange(e)} />
+                            {errors.summary && (
+                                <p className="errorMsg">{errors.summary}</p>
+                            )}
+                        </label>
+                    </div>
 
-                    <br></br>
 
-                    <label className="imageForm">
-                        <span>Image: </span>
-                        <input className="Input1" type="text" name="image" value={input.image} onChange={(e) => handleChange(e)} />
-                        {errors.image && <p> {errors.image}</p>}
-                    </label>
+                    <div className='imageForm'>
+                        <label>
+                            <span>Image: </span>
+                            <input className="Input1" type="text" name="image" value={input.image} onChange={(e) => handleChange(e)} />
+                            {errors.image && <p className='errorMsg'> {errors.image}</p>}
+                        </label>
+                    </div>
 
-                    <br></br>
+                  
 
-                    <label className="dietsForm">
-                        <span>Diets: </span>
+                    <div className='dietsForm'>
+                        <label>
+                            <span>Diets: </span>
 
-                        <select onChange={(e) => handleSelect(e)} type='option'>
-                            <option value='ALLTYPE'> All Recipes </option>
-                            {dietList?.map(el => (
-                                <option key={el} value={el}>{el}</option>
-                            ))
-                            }
-                        </select>
-                        {errors.diets && <p>{errors.diets}</p>}
-
+                            <select onChange={(e) => handleSelect(e)} type='option'>
+                                <option value='ALLTYPE'> All Recipes </option>
+                                {dietList?.map(el => (
+                                    <option key={el} value={el}>{el}</option>
+                                ))
+                                }
+                            </select>
+                            {errors.diets && <p>{errors.diets}</p>}
+                        </label>
+                    </div>
+                    <div className='dietsArray'>
+                    <h3 className='dietsArrayTitle'>Diets List</h3>
                         {input.diets?.map(el =>
-                            <div key={el} className="dietasAgregadas">
-                                 {el}<button className="btnDeleteDiet" onClick={() => handleDelete(el)}>X</button>
+                            <div key={el} className="dietsAdded">
+                                {el}<button className="btnDeleteDiet" onClick={(e) => handleDelete(el)}>X</button>
                             </div>
                         )}
-                        {/* <div className="DietInput" onChange={(e) => handleSelect(e)}>
-                            {TypeDiet1?.map((die) => (
-                                <div key={die.name}>
-                                    <input
-                                        type="checkbox"
-                                        name="diets"
-                                        value={die.name}
-                                    ></input>
-                                    <label name={die}>{die.name}</label>
-                                </div>))}
-                        </div> */}
 
-                    </label>
+                    </div>
 
-                    <br></br>
 
-                    <label className="healthForm">
-                        <span>HealthScore: </span>
-                        <input className="Input1" type="number" name="healthScore" value={input.healthScore} onChange={(e) => handleChange(e)} />
-                        {errors.healthScore && (
-                            <p className="error">{errors.healthScore}</p>
-                        )}
-                    </label>
+                    <div className='healtForm'>
+                        <label>
+                            <span>HealthScore: </span>
+                            <input className="healtInput" type="number" name="healthScore" value={input.healthScore} onChange={(e) => handleChange(e)} />
+                            {errors.healthScore && (
+                                <p className="errorMsg">{errors.healthScore}</p>
+                            )}
+                        </label>
+                    </div>
 
-                    <br></br>
 
-                    <label className="instructionsForm">
-                        <span>Instructions: </span>
-                        <input className="textarea" type="text" name="steps" value={input.steps[{}]} onChange={(e) => handleAddStep(e)} />
-                    
+                    <div className='stepsForm'>
+                        <label>
+
+                            <span >Steps: (Double Click to Add Steps) </span>
+                            <div >
+                                <textarea className="stepInput" type="text" name="steps" value={input.steps[{}]} onDoubleClick={(e) => handleAddStep(e)} /></div>
+                        </label>
+                    </div>
+
+                    <div className='stepsArray'>
+                    <h3 className='stepArrayTitle'>Step by Step</h3>
                         {input.steps?.map(el =>
-                            <div key={el} className="dietasAgregadas">
-                                 {el.number} - <span>{el.step}</span><button className="btnDeleteStep" >Delete Step</button>
+                            <div key={key++} className="stepsAdded">
+                                {num++}<span className='espacio'>{el.step}</span><div className="btnDeleteStep" onClick={() => handleDeletStep(el)} >Delete Step</div>
                             </div>
                         )}
-                    
-                    
-                    </label>
+                    </div>
 
-                    <br></br>
-
-                    {   <button type='submit'> Create Recipe</button>}
-
+                    <div className='btnSubmitForm'>
+                        {<button type='submit'> Create Recipe</button>}
+                    </div>
                 </form>
 
-                <div></div>
-                <div></div>
+               
             </div>
 
-        </div>
+        </div >
     )
 
 
