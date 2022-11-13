@@ -34,12 +34,8 @@ const getDataApi = async () => {
         id: recipe.id,
         name: recipe.title,
         summary: recipe.summary,
-        score: recipe.spoonacularScore,
         healthScore: recipe.healthScore,
         image: recipe.image,
-        vegetarian: recipe.vegetarian,
-        vegan: recipe.vegan,
-        glutenFree: recipe.glutenFree,
         steps: newSteps,
         diets: recipe.diets,
         dbCreated: false,
@@ -117,7 +113,7 @@ const getRecipeID = async (id) => {
 
           {
             model: Diet,
-            attributes: ['diet_name'],
+            attributes: ['name'],
             through: {
               attributes: [],
             },
@@ -151,12 +147,8 @@ const getRecipeID = async (id) => {
         id: recipeFind.data.id,
         name: recipeFind.data.title,
         summary: recipeFind.data.summary,
-        score: recipeFind.data.spoonacularScore,
         healthScore: recipeFind.data.healthScore,
         image: recipeFind.data.image,
-        vegetarian: recipeFind.data.vegetarian,
-        vegan: recipeFind.data.vegan,
-        glutenFree: recipeFind.data.glutenFree,
         steps: newSteps,
         diets: recipeFind.data.diets,
         dbCreated: false,
@@ -170,7 +162,7 @@ const getRecipeID = async (id) => {
 };
 
 const createRecipe = async ({
-  name, summary, score, healthScore, image, vegetarian, vegan, glutenFree, steps, diets }) => {
+  name, summary, healthScore, image, steps, diets }) => {
 
   let res = {
     status: 200,
@@ -196,15 +188,15 @@ const createRecipe = async ({
   }
 
   let newRecipe = await Recipe.create({
-    name, summary, score, healthScore, image, vegetarian, vegan, glutenFree, steps, diets
+    name, summary, healthScore, image, steps, diets
   });
 
-  let dietsFoud = await Diet.findAll({
+  let dietFound = await Diet.findAll({
     where: {
-      diet_name: diets,
+      name: diets,
     },
   });
-  newRecipe.addDiet(dietsFoud);
+  newRecipe.addDiet(dietFound);
   
   return res;
 };

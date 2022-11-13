@@ -8,13 +8,16 @@ import React from 'react'
 
 export default function Nav() {
 
+    function logoClick (){
+        window.location.reload()
+    }
 
     return (
 
         <div className='nav'>
             <div className='logoContent'>
                 <Link to={'/home'}>
-                    <img className='logo' src={logo} />
+                    <img className='logo' onClick={() => logoClick()} src={logo} />
                 </Link>
             </div>
             <Search />

@@ -35,7 +35,7 @@ const rootReducer = (state = initialState, action) => {
 
         case FILTER_TYPE:
             let FilterType = [...state.Filters]
-            let AllType = action.payload === ALLTYPE ? FilterType : FilterType?.filter(e => e.diets.find(i => i[0].toUpperCase() + i.substr(1) === action.payload))
+            let AllType = action.payload === ALLTYPE ? FilterType : FilterType?.filter(e => e.diets.find(i => i === action.payload))
 
             return {
                 ...state,

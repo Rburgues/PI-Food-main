@@ -101,11 +101,14 @@ export function resetData() {
     }
 }
 
-export function createRecipe(payload) {
+export function createRecipe(input) {
     return async function (dispatch) {
-        return await axios.post(`http://localhost:3001/recipes/`,payload)
-        .then(data=> dispatch({
-            type: CREATE_RECIPE, 
-            payload: data.data}))
+        return await axios.post(`http://localhost:3001/recipes/`,input)
+        .then((res)=>{
+            dispatch({
+                type: CREATE_RECIPE,
+                payload: res.data
+            })
+        })
     }
 };

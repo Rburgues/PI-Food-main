@@ -112,7 +112,6 @@ export default function CreateRecipe() {
     function handleSubmit(e) {
         e.preventDefault()
         if (input.name) {
-            // console.log(input)
             dispatch(createRecipe(input))
             alert('Recipe created succesfully!')
 
@@ -125,6 +124,7 @@ export default function CreateRecipe() {
                 diets: []
 
             })
+            window.history.back()
         } else {
             alert('Please complete all fields')
         }

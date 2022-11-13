@@ -26,10 +26,10 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const {
-    name, summary, score, healthScore, image, vegetarian, vegan, glutenFree, steps, diets } = req.body;
+    name, summary, healthScore, image, steps, diets } = req.body;
 
   const response = await createRecipe({
-    name, summary, score, healthScore, image, vegetarian, vegan, glutenFree, steps, diets });
+    name, summary, healthScore, image, steps, diets });
     res.status(response.status).send(response.msg);
 });
 
