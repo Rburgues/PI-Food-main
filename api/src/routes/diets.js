@@ -1,16 +1,38 @@
 const { Router } = require("express");
-const { getAllDiets } = require("../controlers/diets.js");
-
+require("dotenv").config();
+const { Diet } = require('../db');
+const { API_KEY } = process.env;
+const axios = require('axios');
 const router = Router();
 
 router.get("/", async (req, res) => {
-  try {
-    const response = await getAllDiets();
 
-    res.status(200).send(response);
-  } catch (error) {
-    res.status(404).send({ error: error.message });
-  }
+
+  const apiDiets = await axios.get(
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100` //cambiar a 100 al momento del paginado!
+  );
+
+  let dietTypes = []
+  const apiInfo = apiDiets.data
+
+  apiInfo.results.map(e => e.diets.forEach(el => {
+    if (!dietTypes.includes(el)) {
+      dietTypes = dietTypes.concat(el)
+    }
+  }))
+  dietTypes.forEach((e) => {
+    Diet.findOrCreate({
+      where: {
+        name: e
+      }
+    })
+  })
+
+  const finalAllDiets = await Diet.findAll()
+  const mapDiets = finalAllDiets.map(e => e.dataValues.name)
+  res.send(mapDiets);
+
+
 });
 
 

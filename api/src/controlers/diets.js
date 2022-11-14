@@ -29,9 +29,7 @@ const getAllDiets = async () => {
         })
         const finalAllDiets = await Diet.findAll()
         const mapDiets = finalAllDiets.map(e => e.dataValues.name)
-        //console.log(finalAllDiets)
-        //console.log(prueba)
-        // res.send(mapDiets);
+       
         return mapDiets
 
     } catch (error) {

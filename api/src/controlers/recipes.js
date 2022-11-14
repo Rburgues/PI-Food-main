@@ -4,6 +4,7 @@ require("dotenv").config();
 const { API_KEY } = process.env;
 
 let dataApi = [];
+let dataDB = [];
 
 const getDataApi = async () => {
   try {
@@ -51,7 +52,9 @@ const getDataApi = async () => {
 
 const getDataDB = async () => {
   try {
+    if (dataDB.length > 0) return dataDB;
     const dbRecipes = await Recipe.findAll({
+
       include: [
 
         {
@@ -65,7 +68,38 @@ const getDataDB = async () => {
       ],
     });
 
-    return dbRecipes;
+    dbRecipes.map((recipe) => {
+      let newSteps = [];
+      if (recipe.steps !== undefined) {
+        let count = recipe.steps.length;
+        for (let i = 0; i < count; i++) {
+          let stepToAdd = {
+            number: recipe.steps[i].number,
+            step: recipe.steps[i].step,
+          };
+          newSteps.push(stepToAdd);
+        }
+      } else {
+        stepToAdd = {
+          number: 1,
+          step: "No exists steps for this recipe",
+        };
+        newSteps.push(stepToAdd);
+      }
+      let newRecipe = {
+        id: recipe.id,
+        name: recipe.name,
+        summary: recipe.summary,
+        healthScore: recipe.healthScore,
+        image: recipe.image,
+        steps: newSteps,
+        diets: recipe.diets.map(e => e.name).join(', '),
+        dbCreated: false,
+      };
+      dataDB.push(newRecipe);
+    });
+    return dataDB;
+
   } catch (error) {
     return new Error(error);
   }
@@ -106,8 +140,8 @@ const getAllRecipes = async (name) => {
 
 const getRecipeID = async (id) => {
   try {
-  
-    if (typeof id === "string" && id.slice(0, 3) === "DBC") {
+
+    if (id.length > 10) {
       let recipeFind = await Recipe.findByPk(id, {
         include: [
 
@@ -120,7 +154,38 @@ const getRecipeID = async (id) => {
           },
         ],
       });
-      return recipeFind;
+
+      let newSteps = [];
+      if (recipeFind.steps !== undefined) {
+        let count = recipeFind.steps.length;
+        for (let i = 0; i < count; i++) {
+          let stepToAdd = {
+            number: recipeFind.steps[i].number,
+            step: recipeFind.steps[i].step,
+          };
+          newSteps.push(stepToAdd);
+        }
+      } else {
+        stepToAdd = {
+          number: 1,
+          step: "there is no steps listed for this recipe",
+        };
+        newSteps.push(stepToAdd);
+      }
+
+      let response = {
+        id: recipeFind.id,
+        name: recipeFind.title,
+        summary: recipeFind.summary,
+        healthScore: recipeFind.healthScore,
+        image: recipeFind.image,
+        steps: newSteps,
+        diets: recipeFind.diets.map(e => e.name).join(', '),
+        dbCreated: false,
+      };
+
+      return response;
+
     } else {
       let recipeFind = await axios.get(
         `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
@@ -161,50 +226,10 @@ const getRecipeID = async (id) => {
   }
 };
 
-const createRecipe = async ({
-  name, summary, healthScore, image, steps, diets }) => {
-
-  let res = {
-    status: 200,
-    msg: "Recipe created!!!",
-  };
-
-  if (typeof name !== "string" || name.length < 3) {
-    res.status = 404;
-    res.msg = "Invaild name, please insert 3 or more characters";
-    return res;
-  }
-
-  if (typeof summary !== "string" || summary.length < 10) {
-    res.status = 404;
-    res.msg = "Please insert 10 or more characters";
-    return res;
-  }
-
-  if (typeof healthScore !== "number" || healthScore > 100) {
-    res.status = 404;
-    res.msg = "HealtScore is only 0 to 100, please try again";
-    return res;
-  }
-
-  let newRecipe = await Recipe.create({
-    name, summary, healthScore, image, steps, diets
-  });
-
-  let dietFound = await Diet.findAll({
-    where: {
-      name: diets,
-    },
-  });
-  newRecipe.addDiet(dietFound);
-  
-  return res;
-};
-
 module.exports = {
   getDataApi,
   getDataDB,
   getAllRecipes,
   getRecipeID,
-  createRecipe
+
 };

@@ -1,4 +1,4 @@
-const { DataTypes, UUIDV4 } = require('sequelize');
+const { DataTypes, UUIDV4, INTEGER } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     healthScore: {
-      type: DataTypes.DECIMAL(3,1),
+      type:  DataTypes.INTEGER,
       allowNull: false,
     },
     image: {

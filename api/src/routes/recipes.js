@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { Recipe, Diet } = require("../db");
 const { getAllRecipes, getRecipeID, createRecipe } = require("../controlers/recipes");
 
 const router = Router();
@@ -7,7 +8,7 @@ router.get("/", async (req, res) => {
   try {
     const { name } = req.query;
     const response = await getAllRecipes(name);
-    res.status(200).send(response);     
+    res.status(200).send(response);
   } catch (error) {
     res.status(404).send({ error: error.message });
     // console.error(error)   
@@ -28,10 +29,24 @@ router.post("/", async (req, res) => {
   const {
     name, summary, healthScore, image, steps, diets } = req.body;
 
-  const response = await createRecipe({
-    name, summary, healthScore, image, steps, diets });
-    res.status(response.status).send(response.msg);
-});
+  try {
+    let newRecipe = await Recipe.create({
+      name, summary, healthScore, image, steps
+    });
+
+    let dietFound = await Diet.findAll({
+      where: {
+        name: diets,
+      },
+    });
+    newRecipe.addDiet(dietFound);
+    res.json({ message:'Recipe created' })
+  }
+  catch (error) {
+    console.log(error)
+  }
+
+})
 
 
 module.exports = router;
