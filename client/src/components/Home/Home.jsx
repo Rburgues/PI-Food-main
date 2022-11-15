@@ -22,7 +22,6 @@ export default function Home() {
     setLoading(false);
   }
 
-
   const [pagina, setPagina] = useState(1)
   const porPagina = 9
   const indexOfUltimareceta = pagina * porPagina
@@ -59,7 +58,7 @@ export default function Home() {
                   id={e.id}
                   name={e.name}
                   image={e.image}
-                  diets={e.diets.join(" , ")}
+                  diets={e.diets}
                   healthScore={e.healthScore} />
               )
             })

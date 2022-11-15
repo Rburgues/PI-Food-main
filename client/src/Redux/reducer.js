@@ -1,5 +1,5 @@
 
-import { ALL_RECIPES, SEARCH, DIET_LIST, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAR_PAYLOADS, CREATE_RECIPE, ALL_ID } from "./action";
+import { ALL_RECIPES, SEARCH_BY_NAME, DIET_LIST, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAN_DATA, CREATE_RECIPE, ALL_ID } from "./action";
 import { ALLTYPE } from "../components/Sidebar/sidebar";
 
 
@@ -18,7 +18,7 @@ const rootReducer = (state = initialState, action) => {
                 Recipes: action.payload,
                 Filters: action.payload,
             }
-        case SEARCH:
+        case SEARCH_BY_NAME:
             if (typeof action.payload === "string") {
                 alert("Not Found the recipes");
                 return { ...state }
@@ -65,7 +65,7 @@ const rootReducer = (state = initialState, action) => {
                 Recipes: sortHealthScore
             }
 
-        case CLEAR_PAYLOADS:
+        case CLEAN_DATA:
             return {
                 ...state,
                 RecipeDetails: action.payload,
@@ -74,7 +74,7 @@ const rootReducer = (state = initialState, action) => {
 
         case CREATE_RECIPE:
             return {
-                ...state,
+                ...state
             }
 
         case ALL_ID:

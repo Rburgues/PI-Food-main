@@ -52,7 +52,7 @@ const getDataApi = async () => {
 
 const getDataDB = async () => {
   try {
-    if (dataDB.length > 0) return dataDB;
+
     const dbRecipes = await Recipe.findAll({
 
       include: [
@@ -98,6 +98,10 @@ const getDataDB = async () => {
       };
       dataDB.push(newRecipe);
     });
+    
+    let obj = {};
+    dataDB = dataDB.filter(o => obj[o.id] ? false : obj[o.id] = true);
+
     return dataDB;
 
   } catch (error) {

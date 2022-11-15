@@ -1,59 +1,57 @@
 import axios from "axios";
 
 export const ALL_RECIPES = "ALL_RECIPES"
-export const SEARCH = "SEARCH"
+export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
 export const DIET_LIST = 'DIET_LIST'
 export const FILTER_TYPE = "FILTER_TYPE"
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE';
-export const CLEAR_PAYLOADS = 'CLEAR_PAYLOADS';
+export const CLEAN_DATA = 'CLEAN_DATA';
 export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const ALL_ID = 'ALL_ID';
 
 
-export function allRecipes(){
-    return function(dispatch){
+export function allRecipes() {
+    return function (dispatch) {
         axios.get('http://localhost:3001/recipes')
-        .then((resp)=>{
-            dispatch({
-                type: ALL_RECIPES,
-                payload: resp.data
+            .then((resp) => {
+                dispatch({
+                    type: ALL_RECIPES,
+                    payload: resp.data
+                })
             })
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 }
 
-export function AllSearch(name){
-    return function(dispatch){
-        axios.get(`http://localhost:3001/recipes?name=${name}`)
-        .then((res)=>{
-            dispatch({
-                type: SEARCH,
-                payload: res.data
+export function AllSearch(name) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.get(`http://localhost:3001/recipes?name=${name}`)
+            return dispatch({
+                type: SEARCH_BY_NAME,
+                payload: json.data
             })
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-        
+        } catch (error) {
+           console.log(error)
+        }
     }
 }
 
-export  function AllID(id){
-    return function(dispatch){
+export function AllID(id) {
+    return function (dispatch) {
         axios.get(`http://localhost:3001/recipes/${id}`)
-        .then((res)=>{
-            dispatch({
-                type: ALL_ID,
-                payload: res.data
+            .then(res => {
+                dispatch({
+                    type: ALL_ID,
+                    payload: res.data
+                })
             })
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 }
 
@@ -62,7 +60,7 @@ export function dietsList() {
     return async function (dispatch) {
         try {
             var res = await axios.get('http://localhost:3001/diets');
-              return dispatch({
+            return dispatch({
                 type: DIET_LIST,
                 payload: res.data
             });
@@ -72,7 +70,7 @@ export function dietsList() {
     }
 };
 
-export function filterDiet(order){
+export function filterDiet(order) {
     return {
         type: FILTER_TYPE,
         payload: order
@@ -92,23 +90,30 @@ export function orderByHealthScore(payload) {
     }
 }
 
-export function resetData() {
+export function cleanData() {
     return function (dispatch) {
         dispatch({
-            type: CLEAR_PAYLOADS,
+            type: CLEAN_DATA,
             payload: {},
         })
     }
 }
 
 export function createRecipe(input) {
+    // console.log(input)
     return async function (dispatch) {
-        return await axios.post(`http://localhost:3001/recipes/`,input)
-        .then((res)=>{
-            dispatch({
+        try {
+            const res = await axios.post(`http://localhost:3001/recipe`, input)
+            
+           return dispatch({
                 type: CREATE_RECIPE,
-                payload: res.data
+                payload: res
             })
-        })
+        }
+        catch (error) {
+            console.log(error)
+        }
+
     }
+
 };

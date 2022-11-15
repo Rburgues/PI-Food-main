@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { AllSearch, resetData } from '../../Redux/action'
+import { AllSearch, cleanData } from '../../Redux/action'
 import "./Search.css"
 import searchIcon from '../../images/search.png'
 
@@ -12,7 +12,7 @@ function Search() {
     function handleSubmit(e){
         e.preventDefault()
         dispatch(AllSearch(search))
-        dispatch(resetData());
+        dispatch(cleanData());
       
 
     }

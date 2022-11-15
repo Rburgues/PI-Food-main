@@ -25,11 +25,6 @@ export default function Card({ id, name, image, diets, healthScore }) {
                 <h3 className="healthS">Health Score: {healthScore}</h3>
             </div>
 
-
-
-
-
-
         </div >
     );
 };

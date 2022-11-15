@@ -86,17 +86,13 @@ export default function CreateRecipe() {
             }));
 
         }
-
-
     }
-
 
     function handleSelect(e) {
         if (input.dietList?.includes(e.target.value)) {
             return 'Diet Type exists'
         } else {
-            // console.log(e.target.value)
-            // console.log(dietList)
+           
             setInput((input) => ({
                 ...input,
                 diets: [...input.diets, e.target.value],
@@ -111,8 +107,9 @@ export default function CreateRecipe() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (input.name) {
+        // if (input.name) {
             dispatch(createRecipe(input))
+            console.log(input)
             alert('Recipe created succesfully!')
 
             setInput({
@@ -124,10 +121,10 @@ export default function CreateRecipe() {
                 diets: []
 
             })
-            window.history.back()
-        } else {
-            alert('Please complete all fields')
-        }
+            // window.history.back()
+        // } else {
+        //     alert('Please complete all fields')
+        // }
 
     }
 
