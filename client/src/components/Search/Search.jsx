@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { AllSearch, cleanData } from '../../Redux/action'
-import "./Search.css"
+import s from "./Search.module.css"
 import searchIcon from '../../images/search.png'
 
 
@@ -22,12 +22,12 @@ function Search() {
    
   
   return (
-    <div className='Search-Bar'>
-    <form className="search-container " onSubmit={e=>handleSubmit(e) }  >
+    <div className={s.SearchBar}>
+    <form className={s.searchContainer} onSubmit={e=>handleSubmit(e) }  >
 
-        <input className='inputSearch' type="text" onChange={(e) => onInputChange(e)} placeholder="Search a recipe..." value={search} title='Here you can write the name of a recipe' />
-        <button className="search-container-Input" type="submit" value="Search"  title='Click the button, to start a new search!' > 
-        <img className='searchIcon' src={searchIcon} />
+        <input className={s.inputSearch} type="text" onChange={(e) => onInputChange(e)} placeholder="Search a recipe..." value={search} title='Here you can write the name of a recipe' />
+        <button className={s.searchContainerInput} type="submit" value="Search"  title='Click the button, to start a new search!' > 
+        <img className={s.searchIcon} src={searchIcon} />
         </button>
     </form>
 

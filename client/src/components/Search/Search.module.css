@@ -1,4 +1,4 @@
-.search-container {
+.searchContainer {
     width: 100%;
     justify-content: center;
     margin-top: -10px;
@@ -13,7 +13,7 @@
     border-radius: 8px 0px 0px 8px;
 }
 
-.search-container-Input {
+.searchContainerInput {
     float: right;
     padding: 8px;
     margin-right: 16px;
@@ -25,7 +25,7 @@
     border-radius: 0px 8px 8px 0px;
 }
 
-.search-container-Input:hover {
+.searchContainerInput:hover {
     background: #ccc;
 }
 

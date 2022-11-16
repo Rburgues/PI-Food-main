@@ -21,8 +21,8 @@ export const LandingPage = () => {
           <div className={s.btnCont}>
             <Link to={'/home'}>
               <div className={s.entrada_landing}>
-             <div className={s.col1} ><img className='flecha_landing'src={flecha} /></div>
-              <div className={s.col2} ><img className='puerta_landing'src={puerta} /></div>
+             <div className={s.col1} ><img className={s.flechaLanding} src={flecha} /></div>
+              <div className={s.col2} ><img className={s.puertaLanding} src={puerta} /></div>
             </div>
             </Link>
           

@@ -142,24 +142,19 @@ input {
 }
 
 
-.puerta_landing{
+.puertaLanding{
   width: 280px;
 }
 
-.flecha_landing{
+.flechaLanding{
   margin-top: 10px;
   width: 240px;
-
-  
 }
-
-
+  
 @keyframes flecha {
   from {
     left:8%;
-
   }
-
   to {
    left:-5%;
   }
