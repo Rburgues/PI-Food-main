@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Paginacion.css"
+import s from "./Paginacion.module.css"
 
 export const Paginacion = ({ porPagina, pagina, all_Recipes, paginado, setPagina, maximo }) => {
 
@@ -18,23 +18,23 @@ export const Paginacion = ({ porPagina, pagina, all_Recipes, paginado, setPagina
 
     return (
         <nav>
-            <ul className='click'>
-                <button className='button1' disabled={pagina === 1 || pagina < 1} onClick={onPrevClick}> Prev</button>
+            <ul className={s.click}>
+                <button className={s.button1} disabled={pagina === 1 || pagina < 1} onClick={onPrevClick}> Prev</button>
 
                 {pageNumbers.map(num => {
                     return (
 
                         <li key={num}>
 
-                            <button className='button2' onClick={() => paginado(num)}>{num}</button>
+                            <button className={s.button2} onClick={() => paginado(num)}>{num}</button>
 
                         </li>
                     )
                 })}
-                <button className='button1' disabled={pagina === Math.ceil(maximo) || pagina > Math.ceil(maximo)} onClick={onNextClick}>Next</button>
+                <button className={s.button1} disabled={pagina === Math.ceil(maximo) || pagina > Math.ceil(maximo)} onClick={onNextClick}>Next</button>
 
             </ul>
-            <div className="actualP">{`Actual Page  ${pagina}`} </div>
+            <div className={s.actualP}>{`Actual Page  ${pagina}`} </div>
 
         </nav>
 

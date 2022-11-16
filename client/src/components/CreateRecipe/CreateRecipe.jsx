@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from 'react';
 import { createRecipe, dietsList, resetData } from "../../Redux/action"
-import './CreateRecipe.css'
+import s from './CreateRecipe.module.css'
 import NavVacia from '../NavVacia/NavVacia.jsx'
 
 
@@ -52,9 +52,9 @@ export default function CreateRecipe() {
             healthScore: 0,
             steps: [],
             diets: []
+          
         }
     )
-
 
     function handleChange(e) {
         setInput((input) => ({
@@ -89,27 +89,19 @@ export default function CreateRecipe() {
     }
 
     function handleSelect(e) {
-        if (input.dietList?.includes(e.target.value)) {
+        if (input.diets?.includes(e.target.value)) {
             return 'Diet Type exists'
         } else {
-           
             setInput((input) => ({
                 ...input,
                 diets: [...input.diets, e.target.value],
-            }));
-
-            setErrors(validate({
-                ...input,
-                [e.target.name]: e.target.value
             }));
         }
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-        // if (input.name) {
             dispatch(createRecipe(input))
-            console.log(input)
             alert('Recipe created succesfully!')
 
             setInput({
@@ -118,14 +110,8 @@ export default function CreateRecipe() {
                 image: "",
                 healthScore: 0,
                 steps: [],
-                diets: []
-
-            })
-            // window.history.back()
-        // } else {
-        //     alert('Please complete all fields')
-        // }
-
+                diets: []               
+            })         
     }
 
     function handleDelete(e) {
@@ -140,68 +126,63 @@ export default function CreateRecipe() {
             ...input,
             steps: input.steps.filter(dietList => dietList !== e)
         })
-
-
     }
 
     useEffect(() => {
         dispatch(dietsList())
     }, [dispatch])
 
-
-
     return (
-        <div className='backCreate'>
+        <div className={s.backCreate}>
             <NavVacia />
 
-            <div className='formContainer'>
+            <div className={s.formContainer}>
 
                 <br></br>
 
-                <h1 className="tituloCreateRecipe"> Create your Recipe </h1>
+                <h1 className={s.tituloCreateRecipe}> Create your Recipe </h1>
                 <br></br>
             
 
-                <form className='containerForm' onSubmit={(e) => handleSubmit(e)}>
+                <form className={s.containerForm} onSubmit={(e) => handleSubmit(e)}>
 
-                    <div className='titleForm'>
+                    <div className={s.titleForm}>
                         <label>
                             <span>Title: </span>
-                            <input className="Input1" type="text" name="name" value={input.name} onChange={(e) => handleChange(e)} />
+                            <input className={s.Input1} type="text" name="name" value={input.name} onChange={(e) => handleChange(e)} />
                             {errors.name && (
-                                <p className="errorMsg">{errors.name}</p>
+                                <p className={s.errorMsg}>{errors.name}</p>
                             )}
                         </label>
                     </div>
              
 
-                    <div className='summaryForm'>
+                    <div className={s.summaryForm}>
                         <label>
                             <span>Summary: </span>
-                            <input className="textarea" type="text" name="summary" value={input.summary} onChange={(e) => handleChange(e)} />
+                            <input className={s.textarea} type="text" name="summary" value={input.summary} onChange={(e) => handleChange(e)} />
                             {errors.summary && (
-                                <p className="errorMsg">{errors.summary}</p>
+                                <p className={s.errorMsg}>{errors.summary}</p>
                             )}
                         </label>
                     </div>
 
 
-                    <div className='imageForm'>
+                    <div className={s.imageForm}>
                         <label>
                             <span>Image: </span>
-                            <input className="Input1" type="text" name="image" value={input.image} onChange={(e) => handleChange(e)} />
-                            {errors.image && <p className='errorMsg'> {errors.image}</p>}
+                            <input className={s.Input1} type="text" name="image" value={input.image} onChange={(e) => handleChange(e)} />
+                            {errors.image && <p className='{s.errorMsg}'> {errors.image}</p>}
                         </label>
                     </div>
 
                   
 
-                    <div className='dietsForm'>
+                    <div className={s.dietsForm}>
                         <label>
                             <span>Diets: </span>
 
                             <select onChange={(e) => handleSelect(e)} type='option'>
-                                <option value='ALLTYPE'> All Recipes </option>
                                 {dietList?.map(el => (
                                     <option key={el} value={el}>{el}</option>
                                 ))
@@ -210,47 +191,47 @@ export default function CreateRecipe() {
                             {errors.diets && <p>{errors.diets}</p>}
                         </label>
                     </div>
-                    <div className='dietsArray'>
-                    <h3 className='dietsArrayTitle'>Diets List</h3>
+                    <div className={s.dietsArray}>
+                    <h3 className={s.dietsArrayTitle}>Diets List</h3>
                         {input.diets?.map(el =>
-                            <div key={el} className="dietsAdded">
-                                {el}<button className="btnDeleteDiet" onClick={(e) => handleDelete(el)}>X</button>
+                            <div key={key++} className={s.dietsAdded}>
+                                {el}<button className={s.btnDeleteDiet} onClick={(e) => handleDelete(el)}>X</button>
                             </div>
                         )}
 
                     </div>
 
 
-                    <div className='healtForm'>
+                    <div className={s.healtForm}>
                         <label>
                             <span>HealthScore: </span>
-                            <input className="healtInput" type="number" name="healthScore" value={input.healthScore} onChange={(e) => handleChange(e)} />
+                            <input className={s.healtInput} type="number" name="healthScore" value={input.healthScore} onChange={(e) => handleChange(e)} />
                             {errors.healthScore && (
-                                <p className="errorMsg">{errors.healthScore}</p>
+                                <p className={s.errorMsg}>{errors.healthScore}</p>
                             )}
                         </label>
                     </div>
 
 
-                    <div className='stepsForm'>
+                    <div className={s.stepsForm}>
                         <label>
 
                             <span >Steps: (Double Click to Add Steps) </span>
                             <div >
-                                <textarea className="stepInput" type="text" name="steps" value={input.steps[{}]} onDoubleClick={(e) => handleAddStep(e)} /></div>
+                                <textarea className={s.stepInput} type="text" name="steps" value={input.steps[{}]} onDoubleClick={(e) => handleAddStep(e)} /></div>
                         </label>
                     </div>
 
-                    <div className='stepsArray'>
-                    <h3 className='stepArrayTitle'>Step by Step</h3>
+                    <div className={s.stepsArray}>
+                    <h3 className={s.stepArrayTitle}>Step by Step</h3>
                         {input.steps?.map(el =>
-                            <div key={key++} className="stepsAdded">
-                                {num++}<span className='espacio'>{el.step}</span><div className="btnDeleteStep" onClick={() => handleDeletStep(el)} >Delete Step</div>
+                            <div key={key++} className={s.stepsAdded}>
+                                {num++}<span className={s.espacio}>{el.step}</span><div className={s.btnDeleteStep} onClick={() => handleDeletStep(el)} >Delete Step</div>
                             </div>
                         )}
                     </div>
 
-                    <div className='btnSubmitForm'>
+                    <div className={s.btnSubmitForm}>
                         {<button type='submit'> Create Recipe</button>}
                     </div>
                 </form>

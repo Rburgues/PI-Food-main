@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export const ALL_RECIPES = "ALL_RECIPES"
-export const SEARCH_BY_NAME = "SEARCH_BY_NAME"
-export const DIET_LIST = 'DIET_LIST'
-export const FILTER_TYPE = "FILTER_TYPE"
+export const ALL_RECIPES = "ALL_RECIPES";
+export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
+export const DIET_LIST = 'DIET_LIST';
+export const FILTER_TYPE = "FILTER_TYPE";
+export const FILTER_BY_CREATE = "FILTER_BY_CREATE";
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE';
 export const CLEAN_DATA = 'CLEAN_DATA';
@@ -100,7 +101,6 @@ export function cleanData() {
 }
 
 export function createRecipe(input) {
-    // console.log(input)
     return async function (dispatch) {
         try {
             const res = await axios.post(`http://localhost:3001/recipe`, input)
@@ -116,4 +116,11 @@ export function createRecipe(input) {
 
     }
 
+};
+
+export function filterByCreate(payload) {
+    return {
+        type: 'FILTER_BY_CREATE',
+        payload: payload,
+    }
 };

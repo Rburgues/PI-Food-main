@@ -1,15 +1,15 @@
 import image404 from '../../images/PageNotFound404.png'
 import Nav from '../NavVacia/NavVacia'
-import './PageNotFound.css'
+import s from './PageNotFound.module.css'
 
 export const PageNotFound = () => {
   return (
 
-    <div className='backs'>
+    <div className={s.backs}>
       <Nav />
-      {/* <Sidebar /> */}
-      <div className='wrappers'>
-      <img className='pageNotFound' src={image404} />
+     
+      <div className={s.wrappers}>
+      <img className={s.pageNotFound} src={image404} />
     </div>
     </div >
   )

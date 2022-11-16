@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Recipe, Diet } = require("../db");
-const { getAllRecipes, getRecipeID, createRecipe } = require("../controlers/recipes");
+const { getAllRecipes, getRecipeID } = require("../controlers/recipes");
 
 const router = Router();
 
@@ -27,11 +27,11 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const {
-    name, summary, healthScore, image, steps, diets } = req.body;
+    name, summary, healthScore, image, steps, diets, dbCreated } = req.body;
 
   try {
     let newRecipe = await Recipe.create({
-      name, summary, healthScore, image, steps
+      name, summary, healthScore, image, steps, dbCreated
     });
 
     let dietFound = await Diet.findAll({

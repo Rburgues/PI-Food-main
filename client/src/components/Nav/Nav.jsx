@@ -1,5 +1,4 @@
-import './Nav.css'
-
+import s from './Nav.module.css'
 import logo from '../../images/hf_logo.png'
 import { Link } from 'react-router-dom'
 import Search from '../Search/Search'
@@ -14,14 +13,14 @@ export default function Nav() {
 
     return (
 
-        <div className='nav'>
-            <div className='logoContent'>
+        <div className={s.nav}>
+            <div className={s.logoContent}>
                 <Link to={'/home'}>
-                    <img className='logo' onClick={() => logoClick()} src={logo} />
+                    <img className={s.logo} onClick={() => logoClick()} src={logo} />
                 </Link>
             </div>
             <Search />
-            <div className='recipeContainer'>
+            <div className={s.recipeContainer}>
                
             </div>
         </div>

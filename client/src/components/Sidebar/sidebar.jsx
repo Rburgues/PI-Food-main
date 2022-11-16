@@ -1,7 +1,7 @@
 import React from 'react'
 import './Sidebar.css'
 import { useDispatch, useSelector } from "react-redux"
-import { filterDiet, orderByName, orderByHealthScore, dietsList } from '../../Redux/action'
+import { filterDiet, filterByCreate, orderByName, orderByHealthScore, dietsList, cleanData } from '../../Redux/action'
 import { useState, useEffect } from 'react';
 import recipeIcon from '../../images/recipeIcon.png'
 import { Link } from 'react-router-dom';
@@ -36,6 +36,13 @@ export default function Sidebar() {
         e.preventDefault();
         dispatch(orderByHealthScore(e.target.value))
         setOrder(e.target.value)
+    }
+
+    function handleCreated(e) {
+        e.preventDefault();
+        dispatch(filterByCreate(e.target.value))
+        setOrder(e.target.value)
+        dispatch(cleanData())
     }
 
     function resetAll() {
@@ -77,6 +84,11 @@ export default function Sidebar() {
                 <option value="100-0">Order 100 to 0</option></select>
             </div>
 
+            <div className='filterContent'><label>Origin Recipes</label><br></br><select onChange={(e) => handleCreated(e)} type='option'><option value="ALL">Select All</option>
+                <option value="spoonacular">Spoonacular</option>
+                <option value="createdInDb">Database</option></select>
+            </div>
+
 
             <div className='titleDefault'>
             Default Values
@@ -87,13 +99,6 @@ export default function Sidebar() {
                 <button className='btnReset' onClick={() => resetAll()} >Reset All Filters</button>
 
             </div>
-
-
-           
-            <div></div>
-            
-
-
 
             <div className='createdby'>Created by:<br></br>
                 Richard Burgues</div>

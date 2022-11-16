@@ -1,5 +1,5 @@
 
-import { ALL_RECIPES, SEARCH_BY_NAME, DIET_LIST, FILTER_TYPE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAN_DATA, CREATE_RECIPE, ALL_ID } from "./action";
+import { ALL_RECIPES, SEARCH_BY_NAME, DIET_LIST, FILTER_TYPE, FILTER_BY_CREATE, ORDER_BY_NAME, ORDER_BY_HEALTHSCORE, CLEAN_DATA, CREATE_RECIPE, ALL_ID } from "./action";
 import { ALLTYPE } from "../components/Sidebar/sidebar";
 
 
@@ -40,6 +40,19 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 Recipes: AllType
+            }
+
+        case FILTER_BY_CREATE:
+            let filter = [];
+           
+            if (action.payload === 'createdInDb') filter = state.Filters.filter(el => typeof el.id == "string")
+            
+            if (action.payload === 'spoonacular') filter = state.Filters.filter(el => typeof el.id == "number")
+            
+            return {
+                ...state,
+                Recipes: action.payload === 'ALL' ? state.Filters : filter,
+               
             }
         case ORDER_BY_NAME:
             let sortedNames = [...state.Recipes];

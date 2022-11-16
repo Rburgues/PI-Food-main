@@ -1,8 +1,8 @@
 import React from 'react'
-import './Home.css'
+import s from './Home.module.css'
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { allRecipes, dietsList } from "../../Redux/action";
+import { allRecipes } from "../../Redux/action";
 import CardRecipe from "../CardRecipe/CardRecipe.jsx";
 import Nav from '../Nav/Nav';
 import Sidebar from '../Sidebar/sidebar';
@@ -41,12 +41,12 @@ export default function Home() {
 
 
   return (
-    <div className="backHome">
+    <div className={s.backHome}>
 
       <Nav />
       <Sidebar />
 
-      <div className="wrapper" >
+      <div className={s.wrapper} >
 
         {
           currentRecetas.length > 0 && !loading ? (
@@ -64,14 +64,14 @@ export default function Home() {
             })
 
           ) : !currentRecetas.length > 0 && loading ? (
-            <div className="loading" ><Loading /></div>
+            <div className={s.loading} ><Loading /></div>
           ) : (
-            <div className="error404" ><ErrorPage /></div>
+            <div className={s.error404} ><ErrorPage /></div>
           )
 
         }
         <div></div>{
-        <div className='paginationHome'>
+        <div className={s.paginationHome}>
           <Paginacion
             porPagina={porPagina}
             all_Recipes={all_Recipes.length}

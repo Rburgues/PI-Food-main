@@ -1,5 +1,5 @@
 import React from 'react';
-import './LandingPage.css';
+import s from './LandingPage.module.css';
 import { Link } from 'react-router-dom';
 import logo from '../../images/hf_logo.png'
 import puerta from './img/puerta.png'
@@ -12,17 +12,17 @@ export const LandingPage = () => {
   return (
 
 
-    <div className="containers">
-      <div className="forms_containers">
+    <div className={s.containers}>
+      <div className={s.forms_containers}>
 
-        <div className="signin_signup"> <img src={logo} /><br></br>
+        <div className={s.signin_signup}> <img src={logo} /><br></br>
           <h1>Welcome to Henry Food!</h1>
           <h3>Please click the DOOR to enter</h3>
-          <div className='btnCont'>
+          <div className={s.btnCont}>
             <Link to={'/home'}>
-              <div className='entrada_landing'>
-             <div className='col1' ><img className='flecha_landing'src={flecha} /></div>
-              <div className='col2' ><img className='puerta_landing'src={puerta} /></div>
+              <div className={s.entrada_landing}>
+             <div className={s.col1} ><img className='flecha_landing'src={flecha} /></div>
+              <div className={s.col2} ><img className='puerta_landing'src={puerta} /></div>
             </div>
             </Link>
           

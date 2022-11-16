@@ -1,6 +1,5 @@
 import React from 'react'
-import './NavVacia.css'
-
+import s from './NavVacia.module.css'
 import logo from '../../images/hf_logo.png'
 import recipeIcon from '../../images/recipeIcon.png'
 import { Link } from 'react-router-dom'
@@ -12,18 +11,18 @@ export default function Nav() {
 
     return (
 
-        <div className='navVacio'>
-            <div className='logoContentVacio'>
+        <div className={s.navVacio}>
+            <div className={s.logoContentVacio}>
                 <Link to={'/home'}>
-                    <img className='logoVacio' src={logo} />
+                    <img className={s.logoVacio} src={logo} />
                 </Link>
             </div>
-            <div className='btnContent'>
+            <div className={s.btnContent}>
                 <Link to='/home'>
-                    <button className='btnAtras'><img className='searchIcon' src={homeIcon} /> BACK TO HOME</button>
+                    <button className={s.btnAtras}><img className={s.searchIcon} src={homeIcon} /> BACK TO HOME</button>
                 </Link>
             </div>
-            <div className='recipeContainer'>
+            <div className={s.recipeContainer}>
            
             </div>
 

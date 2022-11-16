@@ -100,9 +100,7 @@ const getDataDB = async () => {
     });
     
     let obj = {};
-    dataDB = dataDB.filter(o => obj[o.id] ? false : obj[o.id] = true);
-
-    return dataDB;
+   return dataDB = dataDB.filter(o => obj[o.id] ? false : obj[o.id] = true);
 
   } catch (error) {
     return new Error(error);

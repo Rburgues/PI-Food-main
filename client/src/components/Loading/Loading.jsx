@@ -1,16 +1,16 @@
 import React from 'react';
-import './Loading.css'
+import s from './Loading.module.css'
 
 export const Loading = () => {
   return (
-    <div className="loading">
-  <div className="circle"></div>
-  <div className="circle"></div>
-  <div className="circle"></div>
-  <div className="circle"></div>
-  <div className="circle"></div>
-  <div className="circle"></div>
-  <div className="circle"></div>
+    <div className={s.loading}>
+  <div className={s.circle}></div>
+  <div className={s.circle}></div>
+  <div className={s.circle}></div>
+  <div className={s.circle}></div>
+  <div className={s.circle}></div>
+  <div className={s.circle}></div>
+  <div className={s.circle}></div>
 </div>
   )
 }

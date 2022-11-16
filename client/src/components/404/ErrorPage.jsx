@@ -1,10 +1,11 @@
 import image from '../../images/404.png'
+import s from './ErrorPage.module.css'
 
 export const ErrorPage = () => {
   return (
-    <div className='content404'>
+    <div className={s.content404}>
         
-        <img className='image404' src={image} />
+        <img className={s.image404} src={image} />
 
     </div>
   )

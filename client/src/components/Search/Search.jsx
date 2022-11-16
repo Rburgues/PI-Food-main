@@ -12,10 +12,9 @@ function Search() {
     function handleSubmit(e){
         e.preventDefault()
         dispatch(AllSearch(search))
-        dispatch(cleanData());
-      
-
+        dispatch(cleanData());     
     }
+
     function onInputChange(e){
         e.preventDefault()
         setSearch(e.target.value)
