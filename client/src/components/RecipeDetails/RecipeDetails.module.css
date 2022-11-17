@@ -10,7 +10,16 @@
 .load_detail{
     visibility: none;
 }
-
+.noSteps{
+    width: 500px;
+    font-size: 18px;
+    color: #fc080c;
+    font-weight: 600;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+}
 
 .recipeDetail {
     width:60%;

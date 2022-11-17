@@ -4,10 +4,10 @@ import { ALLTYPE } from "../components/Sidebar/sidebar";
 
 
 const initialState = {
-    Recipes: [],
-    Filters: [],
+    recipes: [],
+    filters: [],
     dietList: [],
-    RecipeDetails: {}
+    recipeDetails: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -15,8 +15,8 @@ const rootReducer = (state = initialState, action) => {
         case ALL_RECIPES:
             return {
                 ...state,
-                Recipes: action.payload,
-                Filters: action.payload,
+                recipes: action.payload,
+                filters: action.payload,
             }
         case SEARCH_BY_NAME:
             if (typeof action.payload === "string") {
@@ -25,7 +25,7 @@ const rootReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                Recipes: action.payload
+                recipes: action.payload
             }
         case DIET_LIST:
             return {
@@ -34,28 +34,28 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case FILTER_TYPE:
-            let FilterType = [...state.Filters]
+            let FilterType = [...state.filters]
             let AllType = action.payload === ALLTYPE ? FilterType : FilterType?.filter(e => e.diets.find(i => i === action.payload))
 
             return {
                 ...state,
-                Recipes: AllType
+                recipes: AllType
             }
 
         case FILTER_BY_CREATE:
             let filter = [];
            
-            if (action.payload === 'createdInDb') filter = state.Filters.filter(el => typeof el.id == "string")
+            if (action.payload === 'createdInDb') filter = state.filters.filter(el => typeof el.id == "string")
             
-            if (action.payload === 'spoonacular') filter = state.Filters.filter(el => typeof el.id == "number")
+            if (action.payload === 'spoonacular') filter = state.filters.filter(el => typeof el.id == "number")
             
             return {
                 ...state,
-                Recipes: action.payload === 'ALL' ? state.Filters : filter,
+                recipes: action.payload === 'ALL' ? state.filters : filter,
                
             }
         case ORDER_BY_NAME:
-            let sortedNames = [...state.Recipes];
+            let sortedNames = [...state.recipes];
             if (action.payload === 'AZ') {
                 sortedNames = sortedNames.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
             } else {
@@ -63,11 +63,11 @@ const rootReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                Recipes: sortedNames
+                recipes: sortedNames
             }
 
         case ORDER_BY_HEALTHSCORE:
-            let sortHealthScore = [...state.Recipes];
+            let sortHealthScore = [...state.recipes];
             if (action.payload === '0-100') {
                 sortHealthScore = sortHealthScore.sort((a, b) => a.healthScore > b.healthScore ? 1 : -1)
             } else {
@@ -75,13 +75,13 @@ const rootReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                Recipes: sortHealthScore
+                recipes: sortHealthScore
             }
 
         case CLEAN_DATA:
             return {
                 ...state,
-                RecipeDetails: action.payload,
+                recipeDetails: action.payload,
 
             };
 
@@ -93,7 +93,7 @@ const rootReducer = (state = initialState, action) => {
         case ALL_ID:
             return {
                 ...state,
-                RecipeDetails: action.payload
+                recipeDetails: action.payload
             };
 
         default:

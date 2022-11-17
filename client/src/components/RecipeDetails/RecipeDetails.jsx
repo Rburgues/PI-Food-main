@@ -15,7 +15,7 @@ function RecipeDetails() {
 
 
 
-  let recipe = useSelector(state => state.RecipeDetails)
+  let recipe = useSelector(state => state.recipeDetails)
   let recipeSteps = recipe.steps
   const [loading, setLoading] = useState(true);
   let num = 1;
@@ -52,13 +52,13 @@ function RecipeDetails() {
 
               <div className={s.contDetails}>
 
-                <h3 className={s.diets}> Diets: {recipe.diets+', ' || recipe.diets?.map((el) => el.name)}</h3>
+                <h3 className={s.diets}> Diets: {recipe.diets+' ' || recipe.diets?.map((el) => el.name)}</h3>
                 <h3 className={s.healthS}> Health Score: {recipe.healthScore} </h3>
               </div>
 
               <div className={s.containerBg}>
 
-                {recipe.steps && recipe.steps.length ? <h4 className={s.summary}>Step by Step:</h4> : null}
+                {recipe.steps && recipe.steps.length ? <h4 className={s.summary}>Step by Step:</h4> : <div className={s.noSteps}>No Steps for this recipes!</div>}
                 {recipeSteps &&
                   recipeSteps.map((e) => {
                     return (

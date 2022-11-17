@@ -101,6 +101,7 @@ export default function CreateRecipe() {
 
     function handleSubmit(e) {
         e.preventDefault()
+        if (input.name && input.summary&& input.image && input.healthScore) {
             dispatch(createRecipe(input))
             alert('Recipe created succesfully!')
 
@@ -111,7 +112,10 @@ export default function CreateRecipe() {
                 healthScore: 0,
                 steps: [],
                 diets: []               
-            })         
+            })      
+        } else {
+            alert('Please complete all fields')
+        }   
     }
 
     function handleDelete(e) {
@@ -149,7 +153,7 @@ export default function CreateRecipe() {
                     <div className={s.titleForm}>
                         <label>
                             <span>Title: </span>
-                            <input className={s.Input1} type="text" name="name" value={input.name} onChange={(e) => handleChange(e)} />
+                            <input className={s.input} type="text" name="name" value={input.name} onChange={(e) => handleChange(e)} />
                             {errors.name && (
                                 <p className={s.errorMsg}>{errors.name}</p>
                             )}
@@ -159,8 +163,8 @@ export default function CreateRecipe() {
 
                     <div className={s.summaryForm}>
                         <label>
-                            <span>Summary: </span>
-                            <input className={s.textarea} type="text" name="summary" value={input.summary} onChange={(e) => handleChange(e)} />
+                            <div className={s.summaryTitle}>Summary: </div>
+                            <textarea rows={4} className={s.textarea} type="text" name="summary" value={input.summary} onChange={(e) => handleChange(e)} />
                             {errors.summary && (
                                 <p className={s.errorMsg}>{errors.summary}</p>
                             )}
@@ -171,8 +175,8 @@ export default function CreateRecipe() {
                     <div className={s.imageForm}>
                         <label>
                             <span>Image: </span>
-                            <input className={s.Input1} type="text" name="image" value={input.image} onChange={(e) => handleChange(e)} />
-                            {errors.image && <p className='{s.errorMsg}'> {errors.image}</p>}
+                            <input className={s.input} type="text" name="image" value={input.image} onChange={(e) => handleChange(e)} />
+                            {errors.image && <p className={s.errorMsg}> {errors.image}</p>}
                         </label>
                     </div>
 
@@ -182,7 +186,7 @@ export default function CreateRecipe() {
                         <label>
                             <span>Diets: </span>
 
-                            <select onChange={(e) => handleSelect(e)} type='option'>
+                            <select className={s.selectDiets} onChange={(e) => handleSelect(e)} type='option'>
                                 {dietList?.map(el => (
                                     <option key={el} value={el}>{el}</option>
                                 ))
@@ -232,7 +236,7 @@ export default function CreateRecipe() {
                     </div>
 
                     <div className={s.btnSubmitForm}>
-                        {<button type='submit'> Create Recipe</button>}
+                        {<button className={s.btnCreateRecipe} type='submit'> Create Recipe</button>}
                     </div>
                 </form>
 

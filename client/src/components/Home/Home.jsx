@@ -14,7 +14,7 @@ import { Paginacion } from '../Paginacion/Paginacion.jsx';
 
 export default function Home() {
   let dispatch = useDispatch()
-  let all_Recipes = useSelector((state) => state.Recipes)
+  let all_Recipes = useSelector((state) => state.recipes)
   const [loading, setLoading] = useState(true);
   
 
