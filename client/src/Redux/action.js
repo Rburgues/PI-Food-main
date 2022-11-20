@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const ALL_RECIPES = "ALL_RECIPES";
 export const SEARCH_BY_NAME = "SEARCH_BY_NAME";
 export const DIET_LIST = 'DIET_LIST';
@@ -10,7 +9,6 @@ export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE';
 export const CLEAN_DATA = 'CLEAN_DATA';
 export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const ALL_ID = 'ALL_ID';
-
 
 export function allRecipes() {
     return function (dispatch) {
@@ -57,7 +55,6 @@ export function AllID(id) {
 }
 
 export function dietsList() {
-
     return async function (dispatch) {
         try {
             var res = await axios.get('http://localhost:3001/diets');

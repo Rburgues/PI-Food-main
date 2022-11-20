@@ -126,7 +126,7 @@ const getAllRecipes = async (name) => {
       let recipeToFind = allData.filter((Recipe) => {
         return Recipe.name.toLowerCase().includes(name.toLowerCase());
       });
-      if (recipeToFind.length === 0) {
+      if (recipeToFind.length < 0) {
         return {
           msg: "We are sorry the searched recipe is not in the database",
         };
