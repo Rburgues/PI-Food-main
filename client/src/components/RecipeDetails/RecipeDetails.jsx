@@ -38,12 +38,13 @@ function RecipeDetails() {
                 <h2 className={s.title}>{recipe.name}</h2>
               </div>
               <div className={s.contImgSummary}>
-                <img className={s.imgRecipe} src={recipe.image ? recipe.image : "https://steamuserimages-a.akamaihd.net/ugc/844842639220145572/84F945A992EA069EF8FD6D77BF5E644A937D3589/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"} alt="Imagen" width="200px" height="250px" />
+                <img className={s.imgRecipe} src={recipe.image ? recipe.image : null} alt="Imagen" width="200px" height="250px" />
                 <div className={s.summaryText} dangerouslySetInnerHTML={{ __html: recipe.summary }}></div>
                 <br></br>
               </div>
               <div className={s.contDetails}>
-                <h3 className={s.diets}> Diets: {recipe.diets + ' ' || recipe.diets?.map((el) => el.name)}</h3>
+                <h3 className={s.diets}> <span className={s.dietTitle}>Diets:</span> {recipe.diets + ' ' || recipe.diets?.map((el) => el.name)}</h3>
+                <h3 className={s.dishTypes}><span className={s.dishtype}>DishType:</span> {recipe.dishTypes + ' ' || recipe.dishtypes?.map((el) => el)}</h3>
                 <h3 className={s.healthS}> Health Score: {recipe.healthScore} </h3>
               </div>
               <div className={s.containerBg}>

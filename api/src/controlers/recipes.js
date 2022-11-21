@@ -36,6 +36,7 @@ const getDataApi = async () => {
         name: recipe.title,
         summary: recipe.summary,
         healthScore: recipe.healthScore,
+        dishTypes: recipe.dishTypes,
         image: recipe.image,
         steps: newSteps,
         diets: recipe.diets,
@@ -52,11 +53,8 @@ const getDataApi = async () => {
 
 const getDataDB = async () => {
   try {
-
     const dbRecipes = await Recipe.findAll({
-
       include: [
-
         {
           model: Diet,
           attributes: ['name'],
@@ -64,7 +62,6 @@ const getDataDB = async () => {
             attributes: [],
           },
         },
-
       ],
     });
 
@@ -79,7 +76,7 @@ const getDataDB = async () => {
           };
           newSteps.push(stepToAdd);
         }
-      } else {
+      } else if(recipe.steps.length === 0) {
         stepToAdd = {
           number: 1,
           step: "No exists steps for this recipe",
@@ -91,6 +88,7 @@ const getDataDB = async () => {
         name: recipe.name,
         summary: recipe.summary,
         healthScore: recipe.healthScore,
+        dishTypes: recipe.dishTypes,
         image: recipe.image,
         steps: newSteps,
         diets: recipe.diets.map(e => e.name).join(', '),
@@ -98,9 +96,9 @@ const getDataDB = async () => {
       };
       dataDB.push(newRecipe);
     });
-    
+
     let obj = {};
-   return dataDB = dataDB.filter(o => obj[o.id] ? false : obj[o.id] = true);
+    return dataDB = dataDB.filter(o => obj[o.id] ? false : obj[o.id] = true);
 
   } catch (error) {
     return new Error(error);
@@ -180,6 +178,7 @@ const getRecipeID = async (id) => {
         name: recipeFind.title,
         summary: recipeFind.summary,
         healthScore: recipeFind.healthScore,
+        dishTypes: recipeFind.dishTypes,
         image: recipeFind.image,
         steps: newSteps,
         diets: recipeFind.diets.map(e => e.name).join(', '),
@@ -215,6 +214,7 @@ const getRecipeID = async (id) => {
         name: recipeFind.data.title,
         summary: recipeFind.data.summary,
         healthScore: recipeFind.data.healthScore,
+        dishTypes: recipeFind.data.dishTypes,
         image: recipeFind.data.image,
         steps: newSteps,
         diets: recipeFind.data.diets,

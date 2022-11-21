@@ -6,8 +6,6 @@ const axios = require('axios');
 const router = Router();
 
 router.get("/", async (req, res) => {
-
-
   const apiDiets = await axios.get(
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100` //cambiar a 100 al momento del paginado!
   );

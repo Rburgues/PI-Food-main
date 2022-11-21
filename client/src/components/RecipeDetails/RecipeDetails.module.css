@@ -105,7 +105,7 @@
 }
 
 .healthS {
-    font-size: 18px;    
+    font-size: 20px;    
     color: #028625;
     display: flex;
     justify-content: center;
@@ -122,10 +122,20 @@
 }
 
 .stepsBox{
-    width: 80%;
+    width: 40%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 30px 700px;
+    grid-template-columns: 30px 500px;
     justify-content: center;
-    align-items: start;
+    justify-items: center;
+}
+.dishtype{
+    color: #ea8400;
+    font-size: 18px;
+}
+
+.dietTitle{
+    color: brown;
+    font-size: 18px;
+    margin-right: 8px;
 }
