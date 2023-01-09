@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from 'react';
-import { createRecipe, dietsList, resetData } from "../../Redux/action"
+import { createRecipe, dietsList } from "../../Redux/action"
 import s from './CreateRecipe.module.css'
 import NavVacia from '../NavVacia/NavVacia.jsx'
 
@@ -50,9 +50,10 @@ export default function CreateRecipe() {
             summary: "",
             image: "",
             healthScore: 0,
+            dishTypes: "",
             steps: [],
             diets: []
-          
+
         }
     )
 
@@ -70,7 +71,7 @@ export default function CreateRecipe() {
     }
 
     function handleAddStep(e) {
-        if (e.target.value == "") {
+        if (e.target.value === "") {
 
             alert('Enter almost one step')
 
@@ -101,7 +102,7 @@ export default function CreateRecipe() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (input.name && input.summary&& input.image && input.healthScore) {
+        if (input.name && input.summary && input.image && input.healthScore) {
             dispatch(createRecipe(input))
             alert('Recipe created succesfully!')
 
@@ -110,12 +111,13 @@ export default function CreateRecipe() {
                 summary: "",
                 image: "",
                 healthScore: 0,
+                dishTypes: "",
                 steps: [],
-                diets: []               
-            })      
+                diets: []
+            })
         } else {
             alert('Please complete all fields')
-        }   
+        }
     }
 
     function handleDelete(e) {
@@ -146,7 +148,7 @@ export default function CreateRecipe() {
 
                 <h1 className={s.tituloCreateRecipe}> Create your Recipe </h1>
                 <br></br>
-            
+
 
                 <form className={s.containerForm} onSubmit={(e) => handleSubmit(e)}>
 
@@ -159,7 +161,7 @@ export default function CreateRecipe() {
                             )}
                         </label>
                     </div>
-             
+
 
                     <div className={s.summaryForm}>
                         <label>
@@ -180,7 +182,7 @@ export default function CreateRecipe() {
                         </label>
                     </div>
 
-                  
+
 
                     <div className={s.dietsForm}>
                         <label>
@@ -196,7 +198,7 @@ export default function CreateRecipe() {
                         </label>
                     </div>
                     <div className={s.dietsArray}>
-                    <h3 className={s.dietsArrayTitle}>Diets List</h3>
+                        <h3 className={s.dietsArrayTitle}>Diets List</h3>
                         {input.diets?.map(el =>
                             <div key={key++} className={s.dietsAdded}>
                                 {el}<button className={s.btnDeleteDiet} onClick={(e) => handleDelete(el)}>X</button>
@@ -205,7 +207,6 @@ export default function CreateRecipe() {
 
                     </div>
 
-
                     <div className={s.healtForm}>
                         <label>
                             <span>HealthScore: </span>
@@ -213,6 +214,13 @@ export default function CreateRecipe() {
                             {errors.healthScore && (
                                 <p className={s.errorMsg}>{errors.healthScore}</p>
                             )}
+                        </label>
+                    </div>
+
+                    <div className={s.dishTypeForm}>
+                        <label>
+                            <span>DishType: </span>
+                            <input className={s.input} type="text" name="dishTypes" value={input.dishTypes} onChange={(e) => handleChange(e)} />
                         </label>
                     </div>
 
@@ -227,7 +235,7 @@ export default function CreateRecipe() {
                     </div>
 
                     <div className={s.stepsArray}>
-                    <h3 className={s.stepArrayTitle}>Step by Step</h3>
+                        <h3 className={s.stepArrayTitle}>Step by Step</h3>
                         {input.steps?.map(el =>
                             <div key={key++} className={s.stepsAdded}>
                                 {num++}<span className={s.espacio}>{el.step}</span><div className={s.btnDeleteStep} onClick={() => handleDeletStep(el)} >Delete Step</div>
@@ -240,10 +248,10 @@ export default function CreateRecipe() {
                     </div>
                 </form>
 
-               
+
             </div>
 
-        </div >
+        </div>
     )
 
 

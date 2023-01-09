@@ -19,19 +19,19 @@ export default function Nav() {
         <div className={s.nav}>
             <div className={s.logoContent}>
                 <Link to={'/home'}>
-                    <img className={s.logo} onClick={() => logoClick()} src={logo} />
+                    <img className={s.logo} onClick={() => logoClick()} src={logo} alt="Logo" />
                 </Link>
             </div>
             <Search />
             <div className={s.social}>
-                <a href="https://www.linkedin.com/in/rburgues/" target="_blank">
-                    <img className={s.linkedIn} src={linkedin} />
+                <a href="https://www.linkedin.com/in/rburgues/" target="_blank" rel="noreferrer">
+                    <img className={s.linkedIn} src={linkedin} alt="LinkedIn Icon" />
                 </a>
-                <a href="https://www.facebook.com/rburguesweb" target="_blank">
-                    <img className={s.facebook} src={faceb} />
+                <a href="https://www.facebook.com/rburguesweb" target="_blank" rel="noreferrer">
+                    <img className={s.facebook} src={faceb} alt="Facebook Icon" />
                 </a>
                <Link to={'/'}>
-                    <img className={s.exit} src={exit} />
+                    <img className={s.exit} src={exit} alt="Imagen de salida" />
                 </Link>
             </div>
             <div className={s.recipeContainer}>

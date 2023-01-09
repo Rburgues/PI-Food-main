@@ -51,6 +51,29 @@ const getDataApi = async () => {
   }
 };
 
+
+const getDietaNombre = async () => {
+  try {
+    if (dataApi.length > 0) return dataApi;
+    const apiRecipes = await axios.get(
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100` //cambiar a 100 al momento del paginado!
+    );
+
+    apiRecipes.data.results.map((recipe) => {
+      let newRecipe = {
+        diets: recipe.diets
+        
+      };
+      dataApi.push(newRecipe);
+    });
+    return dataApi;
+  } catch (error) {
+    console.error(error);
+    return new Error(error);
+  }
+};
+
+
 const getDataDB = async () => {
   try {
     const dbRecipes = await Recipe.findAll({
@@ -233,5 +256,6 @@ module.exports = {
   getDataDB,
   getAllRecipes,
   getRecipeID,
+  getDietaNombre
 
 };

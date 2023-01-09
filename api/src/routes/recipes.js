@@ -15,6 +15,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/dietas", async (req, res) => {
+  try {
+    const response = await getDietaNombre();
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+    // console.error(error)   
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -27,11 +37,11 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const {
-    name, summary, healthScore, image, steps, diets, dbCreated } = req.body;
+    name, summary, healthScore, dishTypes, image, steps, diets, dbCreated } = req.body;
 
   try {
     let newRecipe = await Recipe.create({
-      name, summary, healthScore, image, steps, dbCreated
+      name, summary, healthScore, dishTypes, image, steps, dbCreated
     });
 
     let dietFound = await Diet.findAll({

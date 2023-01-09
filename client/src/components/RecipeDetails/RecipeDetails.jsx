@@ -44,7 +44,7 @@ function RecipeDetails() {
               </div>
               <div className={s.contDetails}>
                 <h3 className={s.diets}> <span className={s.dietTitle}>Diets:</span> {recipe.diets + ' ' || recipe.diets?.map((el) => el.name)}</h3>
-                <h3 className={s.dishTypes}><span className={s.dishtype}>DishType:</span> {recipe.dishTypes + ' ' || recipe.dishtypes?.map((el) => el)}</h3>
+                <h3 className={s.dishTypes}><span className={s.dishtype}>DishType:</span> {recipe.dishTypes ? recipe.dishTypes + ' ' || recipe.dishtypes?.map((el) => el) : "Unspecified dish type"}</h3>
                 <h3 className={s.healthS}> Health Score: {recipe.healthScore} </h3>
               </div>
               <div className={s.containerBg}>

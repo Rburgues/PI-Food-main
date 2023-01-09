@@ -23,6 +23,7 @@ module.exports = (sequelize) => {
     dishTypes: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: "Nothing",
     },
     image: {
       type: DataTypes.STRING,
