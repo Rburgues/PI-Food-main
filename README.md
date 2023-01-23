@@ -1,9 +1,9 @@
 ![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
 
 # Individual Project - Henry Food
-<p align="center">
+
 [![Alt text](https://img.youtube.com/vi/BzeQQ8FJceE/0.jpg)](https://www.youtube.com/watch?v=BzeQQ8FJceE)
-</p>
+
 ## Objetivos del Proyecto
 
 - Construir una App utlizando React, Redux, Node y Sequelize.
